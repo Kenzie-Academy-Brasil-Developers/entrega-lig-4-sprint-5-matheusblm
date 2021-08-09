@@ -56,9 +56,10 @@ function vertical(){
             }else{
                 count2 = 0
             }
-            
+
             if(count1 === 4 || count2 === 4){
-                alert('Vitoria!')
+                let vitoria = count1 == 4? 'Jogador 1 Venceu!' : 'Jogador 2 Venceu!'
+                alert(vitoria)
             }
         }
     }
