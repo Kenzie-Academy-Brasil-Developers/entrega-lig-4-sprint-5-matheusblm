@@ -41,9 +41,9 @@ function createDisk(column, line) {
 //Checagem da vertical
 
 function vertical(){
-    let count1 = 0
-    let count2 = 0
     for (let index in tabuleiro){
+        let count1 = 0
+        let count2 = 0
         for(let i in tabuleiro[index]){
             if(tabuleiro[index][i] == 1){
                 count1++
