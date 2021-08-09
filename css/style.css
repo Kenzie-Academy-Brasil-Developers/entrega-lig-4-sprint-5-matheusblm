@@ -1,4 +1,5 @@
 
+
 .alertWin{
 	font-size: 17px;
 	position: absolute;
@@ -36,4 +37,30 @@
 
 .hidden{
 	display: none;
+
+.disk {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: black;
+}
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    border: 1px solid red;
+    width: 30px;
+    height: 200px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.line {
+    border: 1px solid red;
+    width: 30px;
+    height: 30%;
 }
