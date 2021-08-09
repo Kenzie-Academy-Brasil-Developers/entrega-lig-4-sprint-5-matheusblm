@@ -51,6 +51,11 @@ function checkDiagonalTopToBottom(){
 			}
 		}
 	}
+	for(let line = 0; line < 4; line++){
+		for(let column = 0; column < 4; column++){
+			
+		}
+	}
 	return console.log("continue jogando")
 }
 
