@@ -28,7 +28,6 @@ function createBoard() {
 
 createBoard() //inserir esta chamada em um botão de start
     [0, 0, 0, 0, 0, 0],
-];
 
 function createDisk(column, line) {
     let currentColumn = document.getElementById(`column__${column}`)
@@ -38,3 +37,29 @@ function createDisk(column, line) {
     currentLine.appendChild(newDisk)
 }
 
+
+//Checagem da vertical
+
+function vertical(){
+    let count1 = 0
+    let count2 = 0
+    for (let index in tabuleiro){
+        for(let i in tabuleiro[index]){
+            if(tabuleiro[index][i] == 1){
+                count1++
+            }else{
+                count1 = 0
+            }
+
+            if(tabuleiro[index][i] == 2){
+                count2++
+            }else{
+                count2 = 0
+            }
+            
+            if(count1 === 4 || count2 === 4){
+                alert('Vitoria!')
+            }
+        }
+    }
+}
