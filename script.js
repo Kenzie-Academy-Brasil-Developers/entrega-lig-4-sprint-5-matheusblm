@@ -13,13 +13,13 @@ function createBoard() {
 
     for (let i = 0; i < 7; i++) {
         let boardColumn = document.createElement('div')
-        boardColumn.setAttribute('id', `column__${i+1}`)
+        boardColumn.setAttribute('id', `column__${i}`)
         boardColumn.classList.add('column')
         gameContainer.appendChild(boardColumn)
 
         for (let j = 0; j < 6; j++) {
             let boardLine = document.createElement('div')
-            boardLine.setAttribute('id', `line__${j+1}`)
+            boardLine.classList.add(`line__${i}x${j}`)
             boardLine.classList.add('line')
             boardColumn.appendChild(boardLine)
         }
@@ -27,19 +27,16 @@ function createBoard() {
 }
 
 createBoard() //inserir esta chamada em um botão de start
-    [0, 0, 0, 0, 0, 0],
+
 
 function createDisk(column, line) {
-    let currentColumn = document.getElementById(`column__${column}`)
-    let currentLine = currentColumn.getElementById(`line__${line}`)
+    let currentLine = document.querySelector(`.line__${column}x${line}`)
     let newDisk = document.createElement('div')
     newDisk.classList.add('disk')
     currentLine.appendChild(newDisk)
 }
 
-
 //Checagem da vertical
-
 function vertical(){
     for (let index in tabuleiro){
         let count1 = 0
@@ -64,3 +61,4 @@ function vertical(){
         }
     }
 }
+
