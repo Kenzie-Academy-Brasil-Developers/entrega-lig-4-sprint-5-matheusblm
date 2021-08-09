@@ -9,4 +9,12 @@
     border: 1px solid red;
     width: 30px;
     height: 200px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.line {
+    border: 1px solid red;
+    width: 30px;
+    height: 30%;
 }

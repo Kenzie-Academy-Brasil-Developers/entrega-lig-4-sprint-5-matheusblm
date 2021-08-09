@@ -16,6 +16,13 @@ function createBoard() {
         boardColumn.setAttribute('id', `column__${i+1}`)
         boardColumn.classList.add('column')
         gameContainer.appendChild(boardColumn)
+
+        for (let j = 0; j < 6; j++) {
+            let boardLine = document.createElement('div')
+            boardLine.setAttribute('id', `line__${j+1}`)
+            boardLine.classList.add('line')
+            boardColumn.appendChild(boardLine)
+        }
     }
 }
 
