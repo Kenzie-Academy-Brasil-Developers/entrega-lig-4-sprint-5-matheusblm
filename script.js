@@ -45,9 +45,13 @@ function selectColumn(id){
         if(elemento.children[i].lastChild == null){
             let guardarClasse = elemento.children[i].id
             createDisk(guardarClasse)
+            let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+            tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
+            vertical()
             break
         }
     }
+
 }
 
 
