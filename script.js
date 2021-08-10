@@ -7,6 +7,23 @@ let tabuleiro = [
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
 ];
+const buttonPlayerOne = document.getElementById("buttonPlayerOne");
+const buttonPlayerTwo = document.getElementById("buttonPlayerTwo");
+const playerOneName = buttonPlayerOne.addEventListener("click", function () {
+	let typedText = document.getElementById("inputNameOne").value;
+	let hide = document.getElementById("inputNameOne");
+	hide.classList.add("hidden")
+	buttonPlayerOne.classList.add("hidden")
+	console.log(typedText)
+      });
+
+const playerTwoName = buttonPlayerTwo.addEventListener("click", function () {
+	let typedText = document.getElementById("inputNameTwo").value;
+	let hide = document.getElementById("inputNameTwo");
+	hide.classList.add("hidden")
+	buttonPlayerTwo.classList.add("hidden")
+	console.log(typedText)
+      });
 
 function checkHorizontal(x, y) {
     //check posições 1, 2, 3 e 4
@@ -17,7 +34,7 @@ function checkHorizontal(x, y) {
     for (let position = currentPosition; position > currentPosition - 4; position--) {
         countPlayer1 = 0
         countPlayer2 = 0
-	
+
 	if(position >= 0 && position <= 3){
 		    
         for (let i = position; i < position + 4; i++) {
@@ -220,3 +237,6 @@ function alertErro(){
 }
 
 
+
+
+    
