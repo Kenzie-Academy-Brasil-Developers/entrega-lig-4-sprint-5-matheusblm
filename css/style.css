@@ -1,4 +1,65 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	max-height: 100%;
+	max-height: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
+#bigContainer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+header{
+	text-align: center;
+	width: 100%;
+	background-color: #0096c7;
+	margin-bottom: 50px;
+	height: 40px;
+	color: #caf0f8;
+}
+header span {
+	vertical-align: center;
+}
 .alertWin{
 	font-size: 17px;
 	position: absolute;
@@ -36,7 +97,7 @@
 
 .hidden{
 	display: none;
-
+}
 .disk {
     border-radius: 50%;
     height: 30px;
@@ -51,7 +112,7 @@
 }
 
 .column {
-    border: 1px solid red;
+    border: 1px solid #03045e;
     width: 30px;
     height: 200px;
     display: flex;
@@ -59,8 +120,26 @@
 }
 
 .line {
-    border: 1px solid red;
+    border: 1px solid #03045e;
     width: 30px;
     height: 30%;
 }
-
+footer{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background-color: #0077b6;
+	height: 10%;
+	text-align: end;
+}
+#names{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-around;
+}
+#names li{
+	font-size: 10px;
+	margin-right: 4px;
+	color: #caf0f8;
+}
