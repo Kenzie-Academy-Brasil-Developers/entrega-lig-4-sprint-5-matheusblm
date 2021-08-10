@@ -61,39 +61,41 @@ header span {
 	vertical-align: center;
 }
 .alertWin{
-	font-size: 17px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%);
-	text-align: center;
-	padding: 10px;
-	transition-duration: 0.8s;
-	z-index: 1;
-	color: white;
-	border-style: hidden;
-	border-radius: 4px;
-	background-color: #0077b6;
-	width: 100px;
-	height: 50px;
+    font-size: 17px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 10px;
+    transition-duration: 0.8s;
+    z-index: 1;
+    color: white;
+    border-style: hidden;
+    border-radius: 4px;
+    background-color: #e9f5db;
+    width: 100px;
+    height: 50px;
 }
-.alertErro{
-	font-size: 17px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%);
-	text-align: center;
-	padding: 10px;
-	transition-duration: 0.8s;
-	z-index: 1;
-	color: white;
-	border-style: hidden;
-	border-radius: 4px;
-	background-color: #ff4d6d;
-	width: 150px;
-	height: 60px;
+
+.alertErro {
+    font-size: 17px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 10px;
+    transition-duration: 0.8s;
+    z-index: 1;
+    color: white;
+    border-style: hidden;
+    border-radius: 4px;
+    background-color: #ff4d6d;
+    width: 150px;
+    height: 60px;
 }
+
 
 .hidden{
 	display: none;
@@ -105,6 +107,7 @@ header span {
     width: 30px;
     background-color: black;
 }
+
 #container {
     display: flex;
     flex-direction: row;
@@ -125,6 +128,21 @@ header span {
     width: 30px;
     height: 30%;
 }
+
+.startContainerDefault {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 footer{
 	width: 100%;
 	position: absolute;
@@ -144,3 +162,4 @@ footer{
 	margin-right: 4px;
 	color: #caf0f8;
 }
+
