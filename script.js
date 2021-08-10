@@ -157,6 +157,8 @@ function selectColumn(id) {
 				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
 				newDisk.style.backgroundColor="blue";
+                console.log(pegarPosicao[0])
+                columnsIsFull(pegarPosicao[0])
                 vertical()
 				checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                 checkDiagonalTopToBottom()
@@ -172,6 +174,7 @@ function selectColumn(id) {
 				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
 				newDisk.style.backgroundColor="red";
+                columnsIsFull(pegarPosicao[0])
                 checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                 checkDiagonalTopToBottom()
 	            checkDiagonalBottomToTop()
@@ -314,15 +317,15 @@ function alertWin(jogador) {
 	}, 5000)
 }
 
-function alertErro() {
+function alertErro(text) {
 	let div = document.getElementById("container")
 	let alert = document.createElement("span")
 	alert.classList.add("alertErro")
-	alert.append("A coluna selecionada nao pode receber mais discos")
+	alert.append(text)
 	div.appendChild(alert)
 	setTimeout(function () {
 		alert.classList.add("hidden")
-	}, 6000)}
+	}, 2000)}
 
 
 function travarGame(x){
@@ -333,3 +336,16 @@ function travarGame(x){
         return x
     }
 }
+
+function columnsIsFull(number){
+    let count = 0
+    for(let i = 0; i<tabuleiro[number].length; i++){
+        if(tabuleiro[number][i] === 1 ||tabuleiro[number][i] === 2 ){
+            count++
+        }
+    }
+    if(count === 6){
+        return alertErro("A coluna selecionada nao pode receber mais discos")
+    }
+}
+
