@@ -73,7 +73,7 @@ header span {
 	color: white;
 	border-style: hidden;
 	border-radius: 4px;
-	background-color: #e9f5db;
+	background-color: #0077b6;
 	width: 100px;
 	height: 50px;
 }
@@ -98,6 +98,7 @@ header span {
 .hidden{
 	display: none;
 }
+
 .disk {
     border-radius: 50%;
     height: 30px;

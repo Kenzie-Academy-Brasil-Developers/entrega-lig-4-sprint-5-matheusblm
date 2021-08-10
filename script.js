@@ -5,8 +5,36 @@ let tabuleiro = [
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0],
 ];
+
+function checkHorizontal(x, y) {
+    //check posições 1, 2, 3 e 4
+    let countPlayer1 = 0
+    let countPlayer2 = 0
+    let currentPosition = x
+    for (let position = currentPosition; position > currentPosition - 4; position--) {
+        countPlayer1 = 0
+        countPlayer2 = 0
+        for (let i = position; i < position + 4; i++) {
+            if (tabuleiro[i][y] === 1) {
+                countPlayer1++
+            }
+
+            if (tabuleiro[i][y] === 2) {
+                countPlayer2++
+            }
+        }
+
+        if (countPlayer1 === 4) {
+            console.log('Player One Wins!')
+        }
+
+        if (countPlayer2 === 4) {
+            console.log('Player Two Wins!')
+        }
+    }
+}
 
 function createBoard() {
     let gameContainer = document.getElementById('container')
@@ -15,11 +43,13 @@ function createBoard() {
         let boardColumn = document.createElement('div')
         boardColumn.setAttribute('id', `column__${i}`)
         boardColumn.classList.add('column')
+        boardColumn.addEventListener('click', () => selectColumn(`column__${i}`))
         gameContainer.appendChild(boardColumn)
 
         for (let j = 0; j < 6; j++) {
             let boardLine = document.createElement('div')
             boardLine.classList.add(`line__${i}x${j}`)
+            boardLine.id = `line__${i}x${j}`
             boardLine.classList.add('line')
             boardColumn.appendChild(boardLine)
         }
@@ -28,13 +58,30 @@ function createBoard() {
 
 createBoard() //inserir esta chamada em um botão de start
 
-
-function createDisk(column, line) {
-    let currentLine = document.querySelector(`.line__${column}x${line}`)
+//Criar Disco
+function createDisk(id) {
+    let currentLine = document.getElementById(id)
     let newDisk = document.createElement('div')
     newDisk.classList.add('disk')
     currentLine.appendChild(newDisk)
 }
+
+//Selecionar coluna
+function selectColumn(id){
+    let elemento = document.getElementById(id)
+    for(let i = 0; i < 6; i++){
+        if(elemento.children[i].lastChild == null){
+            let guardarClasse = elemento.children[i].id
+            createDisk(guardarClasse)
+            let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+            tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
+            vertical()
+            break
+        }
+    }
+
+}
+
 
 //Checagem da vertical
 function vertical(){
@@ -162,4 +209,5 @@ function alertErro(){
 		alert.classList.add("hidden")
 		}, 6000)
 }
+
 
