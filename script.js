@@ -79,11 +79,11 @@ function checkHorizontal(x, y) {
         }
 	}
         if (countPlayer1 === 4) {
-            console.log('Player One Wins!')
+            alertWin("Jogador 1")
         }
 
         if (countPlayer2 === 4) {
-            console.log('Player Two Wins!')
+            alertWin("Jogador 2")
         }
     }
 
@@ -139,6 +139,9 @@ function selectColumn(id) {
 				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
 				newDisk.style.backgroundColor="blue";
+				checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                checkDiagonalTopToBottom()
+	            checkDiagonalBottomToTop()
 				vertical()
 				break
 			}
@@ -151,32 +154,16 @@ function selectColumn(id) {
 				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
 				newDisk.style.backgroundColor="red";
-
+                checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                checkDiagonalTopToBottom()
+	            checkDiagonalBottomToTop()
 				vertical()
 				break
 			}
 		}
 		currentPlayer--;
 	}
-
-function selectColumn(id) {
-    let elemento = document.getElementById(id)
-    for (let i = 0; i < 6; i++) {
-        if (elemento.children[i].lastChild == null) {
-            let guardarClasse = elemento.children[i].id
-            createDisk(guardarClasse)
-            let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-            tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
-	    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-            vertical()
-	    checkDiagonalTopToBottom()
-	    checkDiagonalBottomToTop()
-            break
-        }
-    }
-
 }
-
 
 //Checagem da vertical
 function vertical() {
@@ -211,10 +198,10 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player1 Win")
+                alertWin("Jogador 1")
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player2 Win")
+                alertWin("Jogador 2")
             }
         }
     }
@@ -225,10 +212,10 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player1 Win")
+                alertWin("Jogador 1")
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player2 Win")
+                alertWin("Jogador 2")
             }
         }
     }
@@ -302,8 +289,5 @@ function alertErro() {
 	div.appendChild(alert)
 	setTimeout(function () {
 		alert.classList.add("hidden")
-	}, 6000)
-
-}
-
+	}, 6000)}
 
