@@ -1,11 +1,11 @@
 let tabuleiro = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
 ];
 const buttonPlayerOne = document.getElementById("buttonPlayerOne");
 const buttonPlayerTwo = document.getElementById("buttonPlayerTwo");
@@ -86,6 +86,7 @@ function checkHorizontal(x, y) {
             console.log('Player Two Wins!')
         }
     }
+
 }
 
 
@@ -112,17 +113,52 @@ function createBoard() {
             boardColumn.appendChild(boardLine)
         }
     }
+
 }
 
 //Criar Disco
+let newDisk;
 function createDisk(id) {
-    let currentLine = document.getElementById(id)
-    let newDisk = document.createElement('div')
-    newDisk.classList.add('disk')
-    currentLine.appendChild(newDisk)
+	let currentLine = document.getElementById(id)
+	newDisk = document.createElement('div')
+	newDisk.classList.add('disk')
+	currentLine.appendChild(newDisk)
 }
 
 //Selecionar coluna
+
+let currentPlayer = 1;
+function selectColumn(id) {
+	let elemento = document.getElementById(id)
+	if (currentPlayer == 1) {
+		currentPlayer++;
+		for (let i = 0; i < 6; i++) {
+			if (elemento.children[i].lastChild == null) {
+				let guardarClasse = elemento.children[i].id
+				createDisk(guardarClasse)
+				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
+				newDisk.style.backgroundColor="blue";
+				vertical()
+				break
+			}
+		}
+	} else {
+		for (let i = 0; i < 6; i++) {
+			if (elemento.children[i].lastChild == null) {
+				let guardarClasse = elemento.children[i].id
+				createDisk(guardarClasse)
+				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
+				newDisk.style.backgroundColor="red";
+
+				vertical()
+				break
+			}
+		}
+		currentPlayer--;
+	}
+
 function selectColumn(id) {
     let elemento = document.getElementById(id)
     for (let i = 0; i < 6; i++) {
@@ -243,28 +279,31 @@ function checkDiagonalBottomToTop() {
         }
     }
 
+
     return console.log("continue jogando")
 }
 
 function alertWin(jogador) {
-    let div = document.getElementById("container")
-    let alert = document.createElement("span")
-    alert.classList.add("alertWin")
-    alert.append("Parabens " + jogador + " voce ganhou!")
-    div.appendChild(alert)
-    setTimeout(function() {
-        alert.classList.add("hidden")
-    }, 5000)
+	let div = document.getElementById("container")
+	let alert = document.createElement("span")
+	alert.classList.add("alertWin")
+	alert.append("Parabens " + jogador + " voce ganhou!")
+	div.appendChild(alert)
+	setTimeout(function () {
+		alert.classList.add("hidden")
+	}, 5000)
 }
 
 function alertErro() {
-    let div = document.getElementById("container")
-    let alert = document.createElement("span")
-    alert.classList.add("alertErro")
-    alert.append("A coluna selecionada nao pode receber mais discos")
-    div.appendChild(alert)
-    setTimeout(function() {
-        alert.classList.add("hidden")
-    }, 6000)
+	let div = document.getElementById("container")
+	let alert = document.createElement("span")
+	alert.classList.add("alertErro")
+	alert.append("A coluna selecionada nao pode receber mais discos")
+	div.appendChild(alert)
+	setTimeout(function () {
+		alert.classList.add("hidden")
+	}, 6000)
+
 }
+
 
