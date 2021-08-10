@@ -1,3 +1,4 @@
+let travar;
 let tabuleiro = [
 	[0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0],
@@ -102,7 +103,7 @@ function createBoard() {
         let boardColumn = document.createElement('div')
         boardColumn.setAttribute('id', `column__${i}`)
         boardColumn.classList.add('column')
-        boardColumn.addEventListener('click', () => selectColumn(`column__${i}`))
+        boardColumn.addEventListener('click', () => selectColumn(travarGame(`column__${i}`)))
         gameContainer.appendChild(boardColumn)
 
         for (let j = 0; j < 6; j++) {
@@ -139,10 +140,10 @@ function selectColumn(id) {
 				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
 				newDisk.style.backgroundColor="blue";
+                vertical()
 				checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                 checkDiagonalTopToBottom()
 	            checkDiagonalBottomToTop()
-				vertical()
 				break
 			}
 		}
@@ -185,6 +186,7 @@ function vertical() {
             if(count1 === 4 || count2 === 4){
                 let vitoria = count1 == 4? 'Jogador 1' : 'Jogador 2'
                 alertWin(vitoria)
+                travarGame('travar')
             }
         }
     }
@@ -199,9 +201,13 @@ function checkDiagonalTopToBottom() {
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
                 alertWin("Jogador 1")
+                travarGame('travar')
+
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
                 alertWin("Jogador 2")
+                travarGame('travar')
+
             }
         }
     }
@@ -213,9 +219,12 @@ function checkDiagonalTopToBottom() {
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
                 alertWin("Jogador 1")
+                travarGame('travar')
+
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
                 alertWin("Jogador 2")
+                travarGame('travar')
             }
         }
     }
@@ -244,10 +253,15 @@ function checkDiagonalBottomToTop() {
             let three = tabuleiro[line - 2][column + 2];
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player1 Win")
+
+
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player2 Win")
+
             }
         }
     }
@@ -258,9 +272,11 @@ function checkDiagonalBottomToTop() {
             let three = tabuleiro[line - 2][column + 2];
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player1 Win")
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player2 Win")
             }
         }
@@ -291,3 +307,12 @@ function alertErro() {
 		alert.classList.add("hidden")
 	}, 6000)}
 
+
+function travarGame(x){
+    if(x == 'travar'){
+        travar  = 'travado'
+    }
+    if(travar == undefined){
+        return x
+    }
+}
