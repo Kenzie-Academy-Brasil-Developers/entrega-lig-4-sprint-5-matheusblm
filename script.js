@@ -156,8 +156,7 @@ function selectColumn(id) {
 				createDisk(guardarClasse)
 				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
-				newDisk.style.backgroundColor="blue";
-                console.log(pegarPosicao[0])
+				newDisk.classList.add("playerOne");
                 columnsIsFull(pegarPosicao[0])
                 vertical()
 				checkHorizontal(pegarPosicao[0], pegarPosicao[1])
@@ -173,7 +172,7 @@ function selectColumn(id) {
 				createDisk(guardarClasse)
 				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
-				newDisk.style.backgroundColor="red";
+				newDisk.classList.add("playerTwo");
                 columnsIsFull(pegarPosicao[0])
                 checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                 checkDiagonalTopToBottom()

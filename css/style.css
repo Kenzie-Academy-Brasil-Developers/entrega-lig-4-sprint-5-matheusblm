@@ -95,6 +95,23 @@ header span {
     width: 150px;
     height: 60px;
 }
+.gameTie{
+    font-size: 17px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 10px;
+    transition-duration: 0.8s;
+    z-index: 1;
+    color: white;
+    border-style: hidden;
+    border-radius: 4px;
+    background-color: #ff4d6d;
+    width: 170px;
+    height: 90px;
+}
 
 .hidden{
 	display: none;
@@ -106,7 +123,13 @@ header span {
     width: 30px;
     background-color: black;
 }
+.playerOne{
+    background-color: red;
+}
 
+.playerTwo{
+    background-color: blue;
+}
 #container {
     display: flex;
     flex-direction: row;
