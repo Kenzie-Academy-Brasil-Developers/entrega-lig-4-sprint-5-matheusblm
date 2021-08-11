@@ -80,7 +80,11 @@ header{
     font-size: 2rem;
   
 }
-
+nav a{
+    text-decoration: none;
+    color: white;
+    font-size: 10px;
+}
 header span {
 	vertical-align: center;
 }
