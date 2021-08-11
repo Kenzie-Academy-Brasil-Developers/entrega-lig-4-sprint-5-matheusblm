@@ -37,15 +37,11 @@ const resetGame = buttonReset.addEventListener("click", function () {
         [0, 0, 0, 0, 0, 0],
     ];
     currentPlayer = 1
-
     versusContainer.innerHTML = "";
     createBoard()
-
-
-
-
     travar = undefined
 });
+
 function startScreen() {
     let startContainer = document.createElement('div')
     startContainer.classList.add('startContainerDefault')
@@ -94,9 +90,7 @@ function startScreen() {
     startBackground.appendChild(pvpButton)
     startBackground.appendChild(gameCredit)
 
-
-
-    cpuButton.addEventListener('click', function () {
+cpuButton.addEventListener('click', function () {
         let typedTextOne = document.querySelector(".inputNameOne").value;
         let typedTextTwo = document.querySelector(".inputNameTwo").value;
         if (typedTextOne === "") {
@@ -117,7 +111,6 @@ function startScreen() {
 startScreen()
 
 function checkHorizontal(x, y) {
-    //check posições 1, 2, 3 e 4
     let countPlayer1 = 0
     let countPlayer2 = 0
     let currentPosition = Number(x)
@@ -171,7 +164,7 @@ function checkHorizontal(x, y) {
             arrayPlayerTwo = []
         }
     }
-
+    }
 }
 
 
