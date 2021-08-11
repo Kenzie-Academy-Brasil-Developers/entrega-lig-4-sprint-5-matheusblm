@@ -19,12 +19,12 @@ let versus;
 const buttonSandwich = document.getElementById("buttonSandwich");
 
 
-buttonSandwich.addEventListener('click', function () {
+buttonSandwich.addEventListener('click', function() {
     const nav = document.getElementById("nav");
     nav.classList.toggle("active");
 });
 
-const resetGame = buttonReset.addEventListener("click", function () {
+const resetGame = buttonReset.addEventListener("click", function() {
     let container = document.getElementById("container")
     container.innerText = ""
     tabuleiro = [
@@ -46,6 +46,7 @@ const resetGame = buttonReset.addEventListener("click", function () {
 
     travar = undefined
 });
+
 function startScreen() {
     let startContainer = document.createElement('div')
     startContainer.classList.add('startContainerDefault')
@@ -96,7 +97,7 @@ function startScreen() {
 
 
 
-    cpuButton.addEventListener('click', function () {
+    cpuButton.addEventListener('click', function() {
         let typedTextOne = document.querySelector(".inputNameOne").value;
         let typedTextTwo = document.querySelector(".inputNameTwo").value;
         if (typedTextOne === "") {
@@ -192,50 +193,58 @@ function createDisk(id) {
 }
 
 function selectColumn(id) {
-	let elemento = document.getElementById(id)
-	if (currentPlayer == 1) {
-		currentPlayer++;
-		for (let i = 0; i < 6; i++) {
-            if(elemento !== null){
-			if (elemento.children[i].lastChild == null) {
-				let guardarClasse = elemento.children[i].id
-				createDisk(guardarClasse)
-				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
-				newDisk.classList.add("playerOne");
-                columnsIsFull(pegarPosicao[0])
-                versus.classList.toggle("versus2");
-                versus.classList.toggle("versus1");
-                vertical()
-                checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-                checkDiagonalTopToBottom()
-	            checkDiagonalBottomToTop()
-				break
-			}
-		}
+    let elemento = document.getElementById(id)
+    if (currentPlayer == 1) {
+        currentPlayer++;
+        for (let i = 0; i < 6; i++) {
+            if (elemento !== null) {
+                if (elemento.children[i].lastChild == null) {
+                    let guardarClasse = elemento.children[i].id
+                    createDisk(guardarClasse)
+                    let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+                    tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
+                    newDisk.classList.add("playerOne");
+                    columnsIsFull(pegarPosicao[0])
+                    versus.classList.add("versus1Change")
+                    setTimeout(function() {
+                        versus.classList.remove("versus1Change")
+                        versus.classList.toggle("versus2")
+                        versus.classList.toggle("versus1")
+                    }, 300)
+                    vertical()
+                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                    checkDiagonalTopToBottom()
+                    checkDiagonalBottomToTop()
+                    break
+                }
+            }
+        }
+    } else {
+        for (let i = 0; i < 6; i++) {
+            if (elemento !== null) {
+                if (elemento.children[i].lastChild == null) {
+                    let guardarClasse = elemento.children[i].id
+                    createDisk(guardarClasse)
+                    let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+                    tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
+                    newDisk.classList.add("playerTwo");
+                    columnsIsFull(pegarPosicao[0])
+                    versus.classList.add("versus2Change")
+                    setTimeout(function() {
+                        versus.classList.remove("versus2Change")
+                        versus.classList.toggle("versus2")
+                        versus.classList.toggle("versus1")
+                    }, 300)
+                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                    checkDiagonalTopToBottom()
+                    checkDiagonalBottomToTop()
+                    vertical()
+                    break
+                }
+            }
+        }
+        currentPlayer--;
     }
-	} else {
-		for (let i = 0; i < 6; i++) {
-            if(elemento !== null){
-			if (elemento.children[i].lastChild == null) {
-				let guardarClasse = elemento.children[i].id
-				createDisk(guardarClasse)
-				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
-				newDisk.classList.add("playerTwo");
-                columnsIsFull(pegarPosicao[0])
-                versus.classList.toggle("versus1");
-                versus.classList.toggle("versus2");
-                checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-                checkDiagonalTopToBottom()
-	            checkDiagonalBottomToTop()
-				vertical()
-				break
-			}
-		}
-    }
-		currentPlayer--;
-	}
 }
 
 
@@ -364,7 +373,7 @@ function alertWin(jogador) {
     alert.classList.add("alertWin")
     alert.append("Parabens " + jogador + " voce ganhou!")
     div.appendChild(alert)
-    setTimeout(function () {
+    setTimeout(function() {
         alert.classList.add("hidden")
     }, 5000)
 }
@@ -375,7 +384,7 @@ function alertErro(text) {
     alert.classList.add("alertErro")
     alert.append(text)
     div.appendChild(alert)
-    setTimeout(function () {
+    setTimeout(function() {
         alert.classList.add("hidden")
     }, 2000)
 }
@@ -428,4 +437,3 @@ function showPlayerTurn() {
     versusContainer.appendChild(player2Container);
 
 }
-
