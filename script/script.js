@@ -47,10 +47,12 @@ function startScreen() {
 
     let inputNameOne = document.createElement("input")
     inputNameOne.classList.add("inputNameOne")
+    inputNameOne.placeholder = "Nome do jogador um";
     inputNameOne.classList.add("on")
 
     let inputNameTwo = document.createElement("input")
     inputNameTwo.classList.add("inputNameTwo")
+    inputNameTwo.placeholder = "Nome do jogador dois";
     inputNameTwo.classList.add("on")
 
     let cpuButton = document.createElement('button')
