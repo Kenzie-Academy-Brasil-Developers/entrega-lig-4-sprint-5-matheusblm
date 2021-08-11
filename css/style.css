@@ -490,6 +490,9 @@ header nav {
     margin: 30px;
 }
 
+
+/* Animações de troca de jogador */
+
 .versus1 {
     width: 50px;
     height: 50px;
@@ -497,24 +500,27 @@ header nav {
     justify-content: center;
     align-items: center;
     transform: rotateY(90deg);
-    animation: rotateYStart 0.3s forwards;
+    animation: rotateY1Start 0.3s forwards;
     background-color: red;
-    clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+    clip-path: polygon(40% 0%, 40% 20%, 85% 25%, 85% 75%, 40% 80%, 40% 100%, 0% 50%);
 }
 
-@keyframes rotateYStart {
+@keyframes rotateY1Start {
     to {
         transform: rotateY(0deg);
+        clip-path: polygon(40% 10%, 40% 25%, 85% 25%, 85% 75%, 40% 75%, 40% 90%, 0% 50%);
     }
 }
 
 .versus1Change {
     transform: none;
+    clip-path: polygon(40% 10%, 40% 25%, 85% 25%, 85% 75%, 40% 75%, 40% 90%, 0% 50%);
     animation: rotateY1Change 0.3s forwards;
 }
 
 @keyframes rotateY1Change {
     to {
+        clip-path: polygon(40% 0%, 40% 20%, 85% 25%, 85% 75%, 40% 80%, 40% 100%, 0% 50%);
         transform: rotateY(90deg);
     }
 }
@@ -526,21 +532,33 @@ header nav {
     justify-content: center;
     align-items: center;
     transform: rotateY(-90deg);
-    animation: rotateYStart 0.3s forwards;
+    animation: rotateY2Start 0.3s forwards;
     background-color: blue;
-    clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+    clip-path: polygon(15% 25%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 15% 75%);
+}
+
+@keyframes rotateY2Start {
+    to {
+        transform: rotateY(0deg);
+        clip-path: polygon(15% 25%, 60% 25%, 60% 10%, 100% 50%, 60% 90%, 60% 75%, 15% 75%);
+    }
 }
 
 .versus2Change {
     transform: none;
+    clip-path: polygon(15% 25%, 60% 25%, 60% 10%, 100% 50%, 60% 90%, 60% 75%, 15% 75%);
     animation: rotateY2Change 0.3s forwards;
 }
 
 @keyframes rotateY2Change {
     to {
+        clip-path: polygon(15% 25%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 15% 75%);
         transform: rotateY(-90deg);
     }
 }
+
+
+/* */
 
 .playerContainer {
     display: flex;

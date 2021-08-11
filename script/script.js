@@ -207,7 +207,7 @@ function selectColumn(id) {
                     columnsIsFull(pegarPosicao[0])
                     versus.classList.add("versus1Change")
                     setTimeout(function() {
-                        versus.classList.remove("versus1Change")
+                        versus.classList.toggle("versus1Change")
                         versus.classList.toggle("versus2")
                         versus.classList.toggle("versus1")
                     }, 300)
