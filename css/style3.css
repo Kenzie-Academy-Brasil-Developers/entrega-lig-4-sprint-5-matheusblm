@@ -198,14 +198,10 @@ header span {
     background-color: black;
 }
 .playerOne{
-    border: 2px solid black;
-    border-radius: 50px;
     background-color: red;
 }
 
 .playerTwo{
-    border: 2px solid black;
-    border-radius: 50px;
     background-color: blue;
 }
 #container {
