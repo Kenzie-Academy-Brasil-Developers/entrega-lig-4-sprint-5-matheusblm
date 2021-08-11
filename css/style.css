@@ -61,11 +61,26 @@ table {
 header{
 	text-align: center;
 	width: 100%;
-	background-color: #0096c7;
+	background-color: var(--cor-1);
 	margin-bottom: 50px;
 	height: 60px;
 	color: #caf0f8;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
 }
+#title{
+    width: 54%;
+    text-align: end;
+    margin: 0;
+    text-transform: uppercase;
+    color: var(--cor-3);
+    text-shadow: var(--cor-2) 2px 2px 2px;
+    font-size: 2rem;
+  
+}
+
 header span {
 	vertical-align: center;
 }
@@ -125,12 +140,49 @@ header span {
 
 .hidden{
 	display: none;
+    transition: 0.5s;
+}
+.getOut{
+
+    /* Saida para cima
+    position: absolute;
+    top: -638px; */
+    /* Opacidade */
+    opacity: 0;
+    transition: 1s;
+    /* Saida para o lado
+    position: absolute;
+    left: -150%;
+    transition: 2s; */
 }
 .on{
     border-radius: 8px;
     border-style: hidden;
     margin: 5px 0px 5px;
     font-size: 15px;
+}
+
+#buttonReset{
+    border-style: hidden;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.5rem;
+    background-color: #ffba08;
+    color: #000;
+    width: 100px;
+    box-shadow: 0 5px #b38719;
+    transition: 0.2s;
+    margin-top: 20px;
+}
+
+#buttonReset:hover{
+	background-color: #f48c06;
+	cursor: pointer;
+}
+
+#buttonReset:active{
+	transform: translateY(5px);	
+	box-shadow: none;
 }
 .disk {
     border-radius: 50%;
@@ -170,20 +222,24 @@ footer{
 	width: 100%;
 	position: absolute;
 	bottom: 0;
-	background-color: #0077b6;
+	background-color: var(--cor-1);
 	height: 10%;
 	text-align: end;
+    line-height: 100px;
+
 }
 #names{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	align-content: space-around;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
 }
 #names li{
 	font-size: 10px;
 	margin-right: 4px;
-	color: #caf0f8;
+	color: var(--cor-3);
+    width: 20%;
 }
 header nav{
     display: flex;

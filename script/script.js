@@ -146,8 +146,12 @@ function checkHorizontal(x, y) {
 function createBoard() {
     
     let startContainer = document.getElementById('startContainer')
-    if(startContainer !==null){
-    startContainer.remove()
+    let credits = document.querySelector('.gameCreditDefault')
+    if(startContainer !== null && credits !== null){
+    credits.classList.remove("gameCreditDefault")
+    startContainer.classList.add("getOut")
+    startContainer.classList.remove("startContainerDefault")
+    startContainer.classList.add("getOut")
     }
     let gameContainer = document.getElementById('container')
 
