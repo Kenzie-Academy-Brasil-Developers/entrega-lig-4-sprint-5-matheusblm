@@ -17,6 +17,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+    text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -62,7 +63,7 @@ header{
 	width: 100%;
 	background-color: #0096c7;
 	margin-bottom: 50px;
-	height: 40px;
+	height: 60px;
 	color: #caf0f8;
 }
 header span {
@@ -178,6 +179,56 @@ footer{
 	font-size: 10px;
 	margin-right: 4px;
 	color: #caf0f8;
+}
+header nav{
+    display: flex;
+    flex-direction: row-reverse;
+}
+#config{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+    visibility: hidden;
+}
+#nav.active #config{
+    visibility: visible;
+}
+#buttonSandwich{
+    display: flex;
+    padding: 0.5rem 1rem;
+    border: none;
+    margin:0 15px;
+    background: none;
+    cursor: pointer;
+    gap: 5px;
+    
+}
+#hamburguer{
+    color: black;
+    border-top: 2px solid black;
+    width: 20px;
+}
+#hamburguer::after,#hamburguer::before{
+    content: "";
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    margin-top: 5px;
+    transition: 0.3s;
+    position: relative;
+}
+#nav.active #hamburguer{
+    border-top-color: transparent;
+}
+#nav.active #hamburguer::after{
+    transform: rotate(135deg);
+    top:-7px
+}
+#nav.active #hamburguer::before{
+    transform: rotate(-135deg);
 }
 
 .startContainerDefault {

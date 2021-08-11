@@ -13,7 +13,13 @@ let currentPlayer = 1;
 const buttonReset = document.getElementById("buttonReset");
 let namePlayerOne = ""
 let namePlayerTwo = ""
+const buttonSandwich = document.getElementById("buttonSandwich");
 
+
+buttonSandwich.addEventListener('click',function(){
+    const nav=document.getElementById("nav");
+    nav.classList.toggle("active");
+});
 
 const resetGame = buttonReset.addEventListener("click", function () {
     let container = document.getElementById("container")
