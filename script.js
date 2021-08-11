@@ -13,7 +13,12 @@ let currentPlayer = 1;
 const buttonReset = document.getElementById("buttonReset");
 const buttonPlayerOne = document.getElementById("buttonPlayerOne");
 const buttonPlayerTwo = document.getElementById("buttonPlayerTwo");
+const buttonSandwich = document.getElementById("buttonSandwich");
 
+buttonSandwich.addEventListener('click',function(){
+    const nav=document.getElementById("nav");
+    nav.classList.toggle("active");
+});
 
 const playerOneName = buttonPlayerOne.addEventListener("click", function () {
 	let typedText = document.getElementById("inputNameOne").value;
@@ -52,25 +57,36 @@ function startScreen() {
     let startBackground = document.createElement('div')
     startBackground.classList.add('startBackgroundDefault')
 
-    let startButton = document.createElement('button')
-    startButton.classList.add('startButtonDefault')
-    startButton.innerText = 'Start Lig-4'
+    let cpuButton = document.createElement('button')
+    cpuButton.classList.add('cpuButtonDefault')
+    cpuButton.innerText = 'vs CPU'
+
+    let pvpButton = document.createElement('button')
+    pvpButton.classList.add('pvpButtonDefault')
+    pvpButton.innerText = 'vs Player'
 
     let gameName = document.createElement('h2')
     gameName.classList.add('gameNameDefault')
     gameName.innerText = 'Lig-4'
 
-    let gameDesc = document.createElement('span')
-    gameDesc.classList.add('gameDescDefault')
-    gameDesc.innerText = 'Jogo Lig-4 desenvolvido para Kenzie Academy por Matheus, Lucas, Natan e Wallace.'
+    let gameRules = document.createElement('span')
+    gameRules.classList.add('gameRulesDefault')
+    gameRules.innerText = 'Você deve ligar 4 discos na horizontal, vertical ou diagonal \n \n O Jogador 1 irá revezar turnos com o Jogador 2 \n \n Não deixe seu oponente fazer uma sequencia de 4!'
+
+    let gameCredit = document.createElement('span')
+    gameCredit.classList.add('gameCreditDefault')
+    gameCredit.innerText = 'Jogo Lig-4 desenvolvido para Kenzie Academy por Matheus, Lucas, Natan e Wallace.'
 
     document.body.appendChild(startContainer)
     startContainer.appendChild(startBackground)
     startBackground.appendChild(gameName)
-    startBackground.appendChild(gameDesc)
-    startBackground.appendChild(startButton)
+    startBackground.appendChild(gameRules)
+    startBackground.appendChild(cpuButton)
+    startBackground.appendChild(pvpButton)
+    startBackground.appendChild(gameCredit)
 
-    startButton.addEventListener('click', createBoard)
+
+    cpuButton.addEventListener('click', createBoard)
 }
 
 startScreen()
