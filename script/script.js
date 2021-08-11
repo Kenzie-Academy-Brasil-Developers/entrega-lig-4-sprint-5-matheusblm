@@ -1,11 +1,11 @@
 let tabuleiro = [
-	[0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
 ];
 let travar;
 let newDisk;
@@ -13,11 +13,14 @@ let currentPlayer = 1;
 const buttonReset = document.getElementById("buttonReset");
 let namePlayerOne = ""
 let namePlayerTwo = ""
+let versusContainer;
+let versus;
+
 const buttonSandwich = document.getElementById("buttonSandwich");
 
 
-buttonSandwich.addEventListener('click',function(){
-    const nav=document.getElementById("nav");
+buttonSandwich.addEventListener('click', function () {
+    const nav = document.getElementById("nav");
     nav.classList.toggle("active");
 });
 
@@ -34,7 +37,13 @@ const resetGame = buttonReset.addEventListener("click", function () {
         [0, 0, 0, 0, 0, 0],
     ];
     currentPlayer = 1
+
+    versusContainer.innerHTML = "";
     createBoard()
+
+
+
+
     travar = undefined
 });
 function startScreen() {
@@ -84,24 +93,25 @@ function startScreen() {
     startBackground.appendChild(cpuButton)
     startBackground.appendChild(pvpButton)
     startBackground.appendChild(gameCredit)
-   
+
 
 
     cpuButton.addEventListener('click', function () {
         let typedTextOne = document.querySelector(".inputNameOne").value;
         let typedTextTwo = document.querySelector(".inputNameTwo").value;
-            if(typedTextOne === ""){
-                namePlayerOne = "PlayerOne"
-            }else{
-                namePlayerOne = typedTextOne
-            }
-            if(typedTextTwo === ""){
-                namePlayerTwo = "PlayerTwo"
-            }else{
-                namePlayerTwo = typedTextTwo
-            }
-            createBoard()
-          });
+        if (typedTextOne === "") {
+            namePlayerOne = "PlayerOne"
+        } else {
+            namePlayerOne = typedTextOne
+        }
+        if (typedTextTwo === "") {
+            namePlayerTwo = "PlayerTwo"
+        } else {
+            namePlayerTwo = typedTextTwo
+        }
+        createBoard()
+
+    });
 }
 
 startScreen()
@@ -132,7 +142,6 @@ function checkHorizontal(x, y) {
                 countPlayer2++
             }
         }
-	}
         if (countPlayer1 === 4) {
             let oneDisk = document.getElementsByClassName(arrayPlayerone[0][0] + "x"+ arrayPlayerone[0][1])[0];
             let twoDisk = document.getElementsByClassName(arrayPlayerone[1][0] + "x"+ arrayPlayerone[1][1])[0];
@@ -168,14 +177,14 @@ function checkHorizontal(x, y) {
 
 
 function createBoard() {
-    
+
     let startContainer = document.getElementById('startContainer')
     let credits = document.querySelector('.gameCreditDefault')
-    if(startContainer !== null && credits !== null){
-    credits.classList.remove("gameCreditDefault")
-    startContainer.classList.add("getOut")
-    startContainer.classList.remove("startContainerDefault")
-    startContainer.classList.add("getOut")
+    if (startContainer !== null && credits !== null) {
+        credits.classList.remove("gameCreditDefault")
+        startContainer.classList.add("getOut")
+        startContainer.classList.remove("startContainerDefault")
+        startContainer.classList.add("getOut")
     }
     let gameContainer = document.getElementById('container')
 
@@ -194,7 +203,7 @@ function createBoard() {
             boardColumn.appendChild(boardLine)
         }
     }
-
+    showPlayerTurn();
 }
 
 
@@ -219,8 +228,10 @@ function selectColumn(id) {
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
 				newDisk.classList.add("playerOne");
                 columnsIsFull(pegarPosicao[0])
+                versus.classList.toggle("versus2");
+                versus.classList.toggle("versus1");
                 vertical()
-				checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                 checkDiagonalTopToBottom()
 	            checkDiagonalBottomToTop()
 				break
@@ -237,6 +248,8 @@ function selectColumn(id) {
 				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
 				newDisk.classList.add("playerTwo");
                 columnsIsFull(pegarPosicao[0])
+                versus.classList.toggle("versus1");
+                versus.classList.toggle("versus2");
                 checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                 checkDiagonalTopToBottom()
 	            checkDiagonalBottomToTop()
@@ -270,6 +283,7 @@ function vertical() {
             } else {
                 count2 = 0
             }
+
             if(count1 === 4 || count2 === 4){
                 let vitoria = count1 == 4? namePlayerOne : namePlayerTwo
                if(arrayPlayerone.length === 4){
@@ -291,7 +305,6 @@ function vertical() {
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
                }
-
                 travarGame('travar')
                 alertWin(vitoria)
             }
@@ -399,7 +412,7 @@ function checkDiagonalTopToBottom() {
             }
         }
     }
-    
+
 }
 
 function checkDiagonalBottomToTop() {
@@ -474,45 +487,73 @@ function checkDiagonalBottomToTop() {
 }
 
 function alertWin(jogador) {
-	let div = document.getElementById("container")
-	let alert = document.createElement("span")
-	alert.classList.add("alertWin")
-	alert.append("Parabens " + jogador + " voce ganhou!")
-	div.appendChild(alert)
-	setTimeout(function () {
-		alert.classList.add("hidden")
-	}, 5000)
+    let div = document.getElementById("container")
+    let alert = document.createElement("span")
+    alert.classList.add("alertWin")
+    alert.append("Parabens " + jogador + " voce ganhou!")
+    div.appendChild(alert)
+    setTimeout(function () {
+        alert.classList.add("hidden")
+    }, 5000)
 }
 
 function alertErro(text) {
-	let div = document.getElementById("container")
-	let alert = document.createElement("span")
-	alert.classList.add("alertErro")
-	alert.append(text)
-	div.appendChild(alert)
-	setTimeout(function () {
-		alert.classList.add("hidden")
-	}, 2000)}
+    let div = document.getElementById("container")
+    let alert = document.createElement("span")
+    alert.classList.add("alertErro")
+    alert.append(text)
+    div.appendChild(alert)
+    setTimeout(function () {
+        alert.classList.add("hidden")
+    }, 2000)
+}
 
 
-function travarGame(x){
-    if(x == 'travar'){
-        travar  = 'travado'
+function travarGame(x) {
+    if (x == 'travar') {
+        travar = 'travado'
     }
-    if(travar == undefined){
+    if (travar == undefined) {
         return x
     }
 }
 
-function columnsIsFull(number){
+function columnsIsFull(number) {
     let count = 0
-    for(let i = 0; i<tabuleiro[number].length; i++){
-        if(tabuleiro[number][i] === 1 ||tabuleiro[number][i] === 2 ){
+    for (let i = 0; i < tabuleiro[number].length; i++) {
+        if (tabuleiro[number][i] === 1 || tabuleiro[number][i] === 2) {
             count++
         }
     }
-    if(count === 6){
+    if (count === 6) {
         return alertErro("A coluna selecionada nao pode receber mais discos")
     }
+}
+
+function showPlayerTurn() {
+    versusContainer = document.getElementById("versusContainer");
+    let player1Container = document.createElement("div");
+    let player2Container = document.createElement("div");
+    let diskP1 = document.createElement("div");
+    let diskP2 = document.createElement("div");
+    versus = document.createElement("div");
+
+    player1Container.classList.add("playerContainer")
+    player2Container.classList.add("playerContainer")
+    diskP1.classList.add("disk", "playerOne");
+    diskP2.classList.add("disk", "playerTwo");
+    versus.classList.add("versus1");
+
+    versus.innerText = "Go!"
+    player1Container.appendChild(diskP1);
+    player1Container.append(namePlayerOne);
+    player2Container.appendChild(diskP2);
+    player2Container.append(namePlayerTwo);
+
+
+    versusContainer.appendChild(player1Container);
+    versusContainer.appendChild(versus);
+    versusContainer.appendChild(player2Container);
+
 }
 
