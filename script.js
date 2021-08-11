@@ -54,20 +54,24 @@ function checkHorizontal(x, y) {
     //check posições 1, 2, 3 e 4
     let countPlayer1 = 0
     let countPlayer2 = 0
-    let currentPosition = x
+    let currentPosition = Number(x)
+    let yNumber = Number(y)
     for (let position = currentPosition; position > currentPosition - 4; position--) {
         countPlayer1 = 0
         countPlayer2 = 0
+	
+	if(position >= 0 && position <= 3){
+		    
         for (let i = position; i < position + 4; i++) {
-            if (tabuleiro[i][y] === 1) {
+            if (tabuleiro[i][yNumber] === 1) {
                 countPlayer1++
             }
 
-            if (tabuleiro[i][y] === 2) {
+            if (tabuleiro[i][yNumber] === 2) {
                 countPlayer2++
             }
         }
-
+	}
         if (countPlayer1 === 4) {
             console.log('Player One Wins!')
         }
@@ -77,6 +81,8 @@ function checkHorizontal(x, y) {
         }
     }
 }
+
+
 
 function createBoard() {
     //remove start screen
@@ -119,7 +125,10 @@ function selectColumn(id) {
             createDisk(guardarClasse)
             let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
             tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
+	    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
             vertical()
+	    checkDiagonalTopToBottom()
+	    checkDiagonalBottomToTop()
             break
         }
     }
@@ -144,10 +153,9 @@ function vertical() {
             } else {
                 count2 = 0
             }
-
-            if (count1 === 4 || count2 === 4) {
-                let vitoria = count1 == 4 ? 'Jogador 1 Venceu!' : 'Jogador 2 Venceu!'
-                alert(vitoria)
+            if(count1 === 4 || count2 === 4){
+                let vitoria = count1 == 4? 'Jogador 1' : 'Jogador 2'
+                alertWin(vitoria)
             }
         }
     }

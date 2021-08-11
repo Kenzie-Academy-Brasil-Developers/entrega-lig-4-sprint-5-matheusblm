@@ -61,7 +61,7 @@
 }
 
 .column {
-    border: 1px solid red;
+    border: 1px solid #03045e;
     width: 30px;
     height: 200px;
     display: flex;
@@ -69,7 +69,7 @@
 }
 
 .line {
-    border: 1px solid red;
+    border: 1px solid #03045e;
     width: 30px;
     height: 30%;
 }
