@@ -1,13 +1,49 @@
 let tabuleiro = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0],
 ];
+let travar;
+let newDisk;
+let currentPlayer = 1;
+const buttonReset = document.getElementById("buttonReset");
+const buttonPlayerOne = document.getElementById("buttonPlayerOne");
+const buttonPlayerTwo = document.getElementById("buttonPlayerTwo");
 
+
+const playerOneName = buttonPlayerOne.addEventListener("click", function () {
+	let typedText = document.getElementById("inputNameOne").value;
+	let hide = document.getElementById("inputNameOne");
+	hide.classList.add("hidden")
+	buttonPlayerOne.classList.add("hidden")
+      });
+
+const playerTwoName = buttonPlayerTwo.addEventListener("click", function () {
+	let typedText = document.getElementById("inputNameTwo").value;
+	let hide = document.getElementById("inputNameTwo");
+	hide.classList.add("hidden")
+	buttonPlayerTwo.classList.add("hidden")
+      });
+
+const resetGame = buttonReset.addEventListener("click", function () {
+    let container = document.getElementById("container")
+    container.innerText = ""
+    tabuleiro = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+    ];
+    createBoard()
+    travar = undefined
+});
 function startScreen() {
     let startContainer = document.createElement('div')
     startContainer.classList.add('startContainerDefault')
@@ -59,7 +95,7 @@ function checkHorizontal(x, y) {
     for (let position = currentPosition; position > currentPosition - 4; position--) {
         countPlayer1 = 0
         countPlayer2 = 0
-	
+
 	if(position >= 0 && position <= 3){
 		    
         for (let i = position; i < position + 4; i++) {
@@ -73,29 +109,33 @@ function checkHorizontal(x, y) {
         }
 	}
         if (countPlayer1 === 4) {
-            console.log('Player One Wins!')
+            travarGame('travar')
+            alertWin("Jogador 1")
         }
 
         if (countPlayer2 === 4) {
-            console.log('Player Two Wins!')
+            travarGame('travar')
+            alertWin("Jogador 2")
         }
     }
+
 }
 
 
 
 function createBoard() {
-    //remove start screen
+    
     let startContainer = document.getElementById('startContainer')
+    if(startContainer !==null){
     startContainer.remove()
-
+    }
     let gameContainer = document.getElementById('container')
 
     for (let i = 0; i < 7; i++) {
         let boardColumn = document.createElement('div')
         boardColumn.setAttribute('id', `column__${i}`)
         boardColumn.classList.add('column')
-        boardColumn.addEventListener('click', () => selectColumn(`column__${i}`))
+        boardColumn.addEventListener('click', () => selectColumn(travarGame(`column__${i}`)))
         gameContainer.appendChild(boardColumn)
 
         for (let j = 0; j < 6; j++) {
@@ -106,37 +146,57 @@ function createBoard() {
             boardColumn.appendChild(boardLine)
         }
     }
+
 }
 
-//Criar Disco
+
 function createDisk(id) {
-    let currentLine = document.getElementById(id)
-    let newDisk = document.createElement('div')
-    newDisk.classList.add('disk')
-    currentLine.appendChild(newDisk)
+	let currentLine = document.getElementById(id)
+	newDisk = document.createElement('div')
+	newDisk.classList.add('disk')
+	currentLine.appendChild(newDisk)
 }
 
-//Selecionar coluna
 function selectColumn(id) {
-    let elemento = document.getElementById(id)
-    for (let i = 0; i < 6; i++) {
-        if (elemento.children[i].lastChild == null) {
-            let guardarClasse = elemento.children[i].id
-            createDisk(guardarClasse)
-            let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-            tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
-	    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-            vertical()
-	    checkDiagonalTopToBottom()
-	    checkDiagonalBottomToTop()
-            break
-        }
-    }
-
+	let elemento = document.getElementById(id)
+	if (currentPlayer == 1) {
+		currentPlayer++;
+		for (let i = 0; i < 6; i++) {
+			if (elemento.children[i].lastChild == null) {
+				let guardarClasse = elemento.children[i].id
+				createDisk(guardarClasse)
+				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
+				newDisk.classList.add("playerOne");
+                columnsIsFull(pegarPosicao[0])
+                vertical()
+				checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                checkDiagonalTopToBottom()
+	            checkDiagonalBottomToTop()
+				break
+			}
+		}
+	} else {
+		for (let i = 0; i < 6; i++) {
+			if (elemento.children[i].lastChild == null) {
+				let guardarClasse = elemento.children[i].id
+				createDisk(guardarClasse)
+				let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+				tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
+				newDisk.classList.add("playerTwo");
+                columnsIsFull(pegarPosicao[0])
+                checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                checkDiagonalTopToBottom()
+	            checkDiagonalBottomToTop()
+				vertical()
+				break
+			}
+		}
+		currentPlayer--;
+	}
 }
 
 
-//Checagem da vertical
 function vertical() {
     for (let index in tabuleiro) {
         let count1 = 0
@@ -155,6 +215,7 @@ function vertical() {
             }
             if(count1 === 4 || count2 === 4){
                 let vitoria = count1 == 4? 'Jogador 1' : 'Jogador 2'
+                travarGame('travar')
                 alertWin(vitoria)
             }
         }
@@ -169,10 +230,14 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player1 Win")
+                travarGame('travar')
+                alertWin("Jogador 1")
+
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player2 Win")
+                travarGame('travar')
+                alertWin("Jogador 2")
+
             }
         }
     }
@@ -183,10 +248,13 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player1 Win")
+                travarGame('travar')
+                alertWin("Jogador 1")
+
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player2 Win")
+                travarGame('travar')
+                alertWin("Jogador 2")  
             }
         }
     }
@@ -197,14 +265,16 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player1 Win")
+                travarGame('travar')
+                alertWin("Jogador 1")
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
-                return console.log("Player2 Win")
+                travarGame('travar')
+                alertWin("Jogador 2")
             }
         }
     }
-    return console.log("continue jogando")
+    
 }
 
 function checkDiagonalBottomToTop() {
@@ -215,10 +285,15 @@ function checkDiagonalBottomToTop() {
             let three = tabuleiro[line - 2][column + 2];
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player1 Win")
+
+
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player2 Win")
+
             }
         }
     }
@@ -229,35 +304,58 @@ function checkDiagonalBottomToTop() {
             let three = tabuleiro[line - 2][column + 2];
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player1 Win")
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                travarGame('travar')
                 return console.log("Player2 Win")
             }
         }
     }
 
-    return console.log("continue jogando")
 }
 
 function alertWin(jogador) {
-    let div = document.getElementById("container")
-    let alert = document.createElement("span")
-    alert.classList.add("alertWin")
-    alert.append("Parabens " + jogador + " voce ganhou!")
-    div.appendChild(alert)
-    setTimeout(function() {
-        alert.classList.add("hidden")
-    }, 5000)
+	let div = document.getElementById("container")
+	let alert = document.createElement("span")
+	alert.classList.add("alertWin")
+	alert.append("Parabens " + jogador + " voce ganhou!")
+	div.appendChild(alert)
+	setTimeout(function () {
+		alert.classList.add("hidden")
+	}, 5000)
 }
 
-function alertErro() {
-    let div = document.getElementById("container")
-    let alert = document.createElement("span")
-    alert.classList.add("alertErro")
-    alert.append("A coluna selecionada nao pode receber mais discos")
-    div.appendChild(alert)
-    setTimeout(function() {
-        alert.classList.add("hidden")
-    }, 6000)
+function alertErro(text) {
+	let div = document.getElementById("container")
+	let alert = document.createElement("span")
+	alert.classList.add("alertErro")
+	alert.append(text)
+	div.appendChild(alert)
+	setTimeout(function () {
+		alert.classList.add("hidden")
+	}, 2000)}
+
+
+function travarGame(x){
+    if(x == 'travar'){
+        travar  = 'travado'
+    }
+    if(travar == undefined){
+        return x
+    }
 }
+
+function columnsIsFull(number){
+    let count = 0
+    for(let i = 0; i<tabuleiro[number].length; i++){
+        if(tabuleiro[number][i] === 1 ||tabuleiro[number][i] === 2 ){
+            count++
+        }
+    }
+    if(count === 6){
+        return alertErro("A coluna selecionada nao pode receber mais discos")
+    }
+}
+
