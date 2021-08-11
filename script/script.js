@@ -11,23 +11,9 @@ let travar;
 let newDisk;
 let currentPlayer = 1;
 const buttonReset = document.getElementById("buttonReset");
-const buttonPlayerOne = document.getElementById("buttonPlayerOne");
-const buttonPlayerTwo = document.getElementById("buttonPlayerTwo");
+let namePlayerOne = ""
+let namePlayerTwo = ""
 
-
-const playerOneName = buttonPlayerOne.addEventListener("click", function () {
-	let typedText = document.getElementById("inputNameOne").value;
-	let hide = document.getElementById("inputNameOne");
-	hide.classList.add("hidden")
-	buttonPlayerOne.classList.add("hidden")
-      });
-
-const playerTwoName = buttonPlayerTwo.addEventListener("click", function () {
-	let typedText = document.getElementById("inputNameTwo").value;
-	let hide = document.getElementById("inputNameTwo");
-	hide.classList.add("hidden")
-	buttonPlayerTwo.classList.add("hidden")
-      });
 
 const resetGame = buttonReset.addEventListener("click", function () {
     let container = document.getElementById("container")
@@ -41,6 +27,7 @@ const resetGame = buttonReset.addEventListener("click", function () {
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0],
     ];
+    currentPlayer = 1
     createBoard()
     travar = undefined
 });
@@ -51,6 +38,14 @@ function startScreen() {
 
     let startBackground = document.createElement('div')
     startBackground.classList.add('startBackgroundDefault')
+
+    let inputNameOne = document.createElement("input")
+    inputNameOne.classList.add("inputNameOne")
+    inputNameOne.classList.add("on")
+
+    let inputNameTwo = document.createElement("input")
+    inputNameTwo.classList.add("inputNameTwo")
+    inputNameTwo.classList.add("on")
 
     let cpuButton = document.createElement('button')
     cpuButton.classList.add('cpuButtonDefault')
@@ -76,12 +71,29 @@ function startScreen() {
     startContainer.appendChild(startBackground)
     startBackground.appendChild(gameName)
     startBackground.appendChild(gameRules)
+    startBackground.appendChild(inputNameOne)
+    startBackground.appendChild(inputNameTwo)
     startBackground.appendChild(cpuButton)
     startBackground.appendChild(pvpButton)
     startBackground.appendChild(gameCredit)
+   
 
 
-    cpuButton.addEventListener('click', createBoard)
+    cpuButton.addEventListener('click', function () {
+        let typedTextOne = document.querySelector(".inputNameOne").value;
+        let typedTextTwo = document.querySelector(".inputNameTwo").value;
+            if(typedTextOne === ""){
+                namePlayerOne = "PlayerOne"
+            }else{
+                namePlayerOne = typedTextOne
+            }
+            if(typedTextTwo === ""){
+                namePlayerTwo = "PlayerTwo"
+            }else{
+                namePlayerTwo = typedTextTwo
+            }
+            createBoard()
+          });
 }
 
 startScreen()
@@ -286,13 +298,13 @@ function checkDiagonalBottomToTop() {
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
                 travarGame('travar')
-                return console.log("Player1 Win")
+                alertWin("Jogador 1")
 
 
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
                 travarGame('travar')
-                return console.log("Player2 Win")
+                alertWin("Jogador 2")
 
             }
         }
@@ -305,11 +317,11 @@ function checkDiagonalBottomToTop() {
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
                 travarGame('travar')
-                return console.log("Player1 Win")
+                alertWin("Jogador 1")
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
                 travarGame('travar')
-                return console.log("Player2 Win")
+                alertWin("Jogador 2")
             }
         }
     }
