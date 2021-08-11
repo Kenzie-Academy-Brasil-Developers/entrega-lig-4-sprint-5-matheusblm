@@ -190,8 +190,8 @@ header span {
 }
 .disk {
     border-radius: 50%;
-    height: 30px;
-    width: 30px;
+    height: 31px;
+    width: 31px;
     background-color: black;
 }
 .playerOne{
@@ -209,17 +209,27 @@ header span {
 }
 
 .column {
-    border: 1px solid #03045e;
-    width: 30px;
+    background-color: var(--cor-1);
+    width: 32px;
     height: 200px;
     display: flex;
     flex-direction: column-reverse;
 }
 
+.column:hover{
+    background-color: #3a6272;
+}
+
 .line {
-    border: 1px solid #03045e;
+    background-color: white;
+    border-top: 1px solid var(--cor-1);
+    border-bottom: 1px solid var(--cor-1);
+    border-radius: 30px;
     width: 30px;
     height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer{
@@ -244,6 +254,7 @@ footer{
 	margin-right: 4px;
 	color: var(--cor-3);
     width: 20%;
+    height: 50px;
 }
 header nav{
     display: flex;
