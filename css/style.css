@@ -159,6 +159,7 @@ header span {
     left: -150%;
     transition: 2s; */
 }
+
 .on{
     border-radius: 8px;
     border-style: hidden;
@@ -375,6 +376,16 @@ header nav{
     width: 80%;
     color: whitesmoke;
 }
+.winAnimation{
+	animation: piscaPisca 1s linear infinite;
+}
+
+@keyframes piscaPisca{
+	0% {opacity: 1;}
+	50% {opacity: 0.2}
+	100% {opacity: 1;}
+}
+
 #versusContainer{
     display: flex;
     align-items: center;
