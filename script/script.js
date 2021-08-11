@@ -186,6 +186,7 @@ function selectColumn(id) {
 	if (currentPlayer == 1) {
 		currentPlayer++;
 		for (let i = 0; i < 6; i++) {
+            if(elemento !== null){
 			if (elemento.children[i].lastChild == null) {
 				let guardarClasse = elemento.children[i].id
 				createDisk(guardarClasse)
@@ -200,8 +201,10 @@ function selectColumn(id) {
 				break
 			}
 		}
+    }
 	} else {
 		for (let i = 0; i < 6; i++) {
+            if(elemento !== null){
 			if (elemento.children[i].lastChild == null) {
 				let guardarClasse = elemento.children[i].id
 				createDisk(guardarClasse)
@@ -216,6 +219,7 @@ function selectColumn(id) {
 				break
 			}
 		}
+    }
 		currentPlayer--;
 	}
 }
