@@ -1,3 +1,11 @@
+:root {
+    --cor-1: #264653;
+    --cor-2: #2A9D8F;
+    --cor-3: #E9C46A;
+    --cor-4: #F4A261;
+    --cor-5: #E76F51;
+}
+
 .alertWin {
     font-size: 17px;
     position: absolute;
@@ -72,10 +80,76 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: cadetblue;
+    background-color: var(--cor-1);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.startContainerDefault h2 {
+    margin: 0;
+    text-transform: uppercase;
+    color: var(--cor-3);
+    text-shadow: var(--cor-2) 2px 2px 2px;
+    font-size: 3rem;
+    margin-bottom: 40px;
+}
+
+.startContainerDefault button {
+    border-radius: 5px;
+    border: 1px solid var(--cor-5);
+    box-shadow: var(--cor-5) 2px 2px 1px;
+    background-color: var(--cor-1);
+    color: var(--cor-4);
+    margin: 5px 0;
+    width: 100px;
+    height: 25px;
+}
+
+.startContainerDefault button.cpuButtonDefault:hover {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-shadow: none;
+}
+
+.startContainerDefault button.pvpButtonDefault:hover {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    box-shadow: none;
+}
+
+.startBackgroundDefault {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    text-align: center;
+    align-items: center;
+}
+
+.gameCreditDefault {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--cor-3);
+    margin-bottom: 20px;
+    width: 80%;
+    min-width: 290px;
+    position: fixed;
+    bottom: 0;
+}
+
+.gameRulesDefault {
+    background-color: var(--cor-1);
+    border: 1px solid var(--cor-3);
+    padding: 10px 8px;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: lighter;
+    margin: 10px 20px 30px;
+    width: 80%;
+    color: whitesmoke;
 }
