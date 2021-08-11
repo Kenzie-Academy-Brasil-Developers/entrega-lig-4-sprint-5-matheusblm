@@ -13,7 +13,12 @@ let currentPlayer = 1;
 const buttonReset = document.getElementById("buttonReset");
 const buttonPlayerOne = document.getElementById("buttonPlayerOne");
 const buttonPlayerTwo = document.getElementById("buttonPlayerTwo");
+const buttonSandwich = document.getElementById("buttonSandwich");
 
+buttonSandwich.addEventListener('click',function(){
+    const nav=document.getElementById("nav");
+    nav.classList.toggle("active");
+});
 
 const playerOneName = buttonPlayerOne.addEventListener("click", function () {
 	let typedText = document.getElementById("inputNameOne").value;
