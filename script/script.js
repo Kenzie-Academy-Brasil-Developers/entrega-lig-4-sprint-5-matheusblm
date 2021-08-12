@@ -220,21 +220,21 @@ function selectColumn(id) {
             if (elemento !== null) {
                 if (elemento.children[i].lastChild == null) {
                     let guardarClasse = elemento.children[i].id
-                    createDisk(guardarClasse)
                     let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+                    createDisk(guardarClasse,pegarPosicao[0], pegarPosicao[1])
                     tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
                     newDisk.classList.add("playerOne");
                     columnsIsFull(pegarPosicao[0])
                     versus.classList.add("versus1Change")
+                    vertical()
+                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                    checkDiagonalTopToBottom()
+                    checkDiagonalBottomToTop()
                     setTimeout(function() {
                         versus.classList.toggle("versus1Change")
                         versus.classList.toggle("versus2")
                         versus.classList.toggle("versus1")
                     }, 300)
-                    vertical()
-                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-                    checkDiagonalTopToBottom()
-                    checkDiagonalBottomToTop()
                     break
                 }
             }
@@ -244,21 +244,21 @@ function selectColumn(id) {
             if (elemento !== null) {
                 if (elemento.children[i].lastChild == null) {
                     let guardarClasse = elemento.children[i].id
-                    createDisk(guardarClasse)
                     let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
                     tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
+                    createDisk(guardarClasse,pegarPosicao[0], pegarPosicao[1])
                     newDisk.classList.add("playerTwo");
                     columnsIsFull(pegarPosicao[0])
                     versus.classList.add("versus2Change")
+                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                    checkDiagonalTopToBottom()
+                    checkDiagonalBottomToTop()
+                    vertical()
                     setTimeout(function() {
                         versus.classList.remove("versus2Change")
                         versus.classList.toggle("versus2")
                         versus.classList.toggle("versus1")
                     }, 300)
-                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-                    checkDiagonalTopToBottom()
-                    checkDiagonalBottomToTop()
-                    vertical()
                     break
                 }
             }
