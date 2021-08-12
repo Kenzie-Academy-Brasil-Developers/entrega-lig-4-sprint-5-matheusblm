@@ -47,9 +47,6 @@ const changeThemeUm = document.getElementById('temaDois').addEventListener('clic
     container.innerText = ""
     createBoard()
 
-  
-    
-
 })
 const changeThemeDois = document.getElementById('temaUm').addEventListener('click', function() {
     let titleDefault = document.getElementById('title')

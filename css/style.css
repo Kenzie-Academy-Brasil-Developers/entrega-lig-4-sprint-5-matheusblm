@@ -287,6 +287,7 @@ video{
 header nav {
     display: flex;
     flex-direction: row-reverse;
+    background-color: var(--cor-1);
 }
 
 #config {
@@ -296,6 +297,7 @@ header nav {
     gap: 10px;
     transition: 0.2s;
     visibility: hidden;
+    background-color: var(--cor-1);
 }
 
 #nav.active #config {

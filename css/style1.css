@@ -409,11 +409,14 @@ header nav {
 
 #config {
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
     transition: 0.2s;
     visibility: hidden;
+    background-color: black;
+    font-size: 10px;
 }
 
 #nav.active #config {
@@ -597,6 +600,8 @@ header nav {
 
 #musicOff {
     border: none;
+    width: 15px;
+    height: 15px;
 }
 
 .sound-enable {
@@ -765,5 +770,8 @@ video {
         transform: translateX(-50%);
         width: 200px;
         height: 40px;
+    }
+    #config{
+        font-size: 15px;
     }
 }
