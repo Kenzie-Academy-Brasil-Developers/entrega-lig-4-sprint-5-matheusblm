@@ -26,9 +26,14 @@ musicOff.addEventListener("click", function(){
     soundBackground.pause()
     soundBackground.currentTime = 0
     enableSom = false
+    musicOff.classList.toggle("sound-enable");
+    musicOff.classList.toggle("sound-disable");
+
     }else{
     soundBackground.play()
     enableSom = true
+    musicOff.classList.toggle("sound-enable");
+    musicOff.classList.toggle("sound-disable");
     }
 
 })

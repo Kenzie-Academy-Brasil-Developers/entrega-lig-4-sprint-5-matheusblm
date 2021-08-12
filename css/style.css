@@ -586,3 +586,17 @@ header nav {
         height: 40px;
     }
 }
+
+.sound-enable{
+    width: 20px;
+    height: 20px;
+    background-image: url(/assets/img/—Pngtree—sound\ vector\ icon_3791371.png);
+    background-size: contain;
+    transition: .3s;
+}
+.sound-disable{
+    width: 20px;
+    height: 20px;
+    background-image: url(/assets/img/—Pngtree—volume\ off\ glyph\ black\ icon_4071616.png);
+    background-size: contain;
+}
