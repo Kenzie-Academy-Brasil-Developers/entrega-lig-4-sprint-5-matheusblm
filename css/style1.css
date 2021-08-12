@@ -311,6 +311,7 @@ header span {
     box-shadow: 0 5px #b38719;
     transition: 0.2s;
     margin-top: 20px;
+    z-index: 1;
 }
 
 #buttonReset:hover {
@@ -401,7 +402,6 @@ footer {
 }
 
 header nav {
-    margin-top: 20px;
     display: flex;
     flex-direction: row-reverse;
 }
@@ -578,6 +578,19 @@ header nav {
     gap: 10px;
 }
 
+.sound-enable{
+    width: 20px;
+    height: 20px;
+    background-image: url("../assets/img/—Pngtree—sound_vector\ icon_3791371.png");
+    background-size: contain;
+    transition: .3s;
+}
+.sound-disable{
+    width: 20px;
+    height: 20px;
+    background-image: url("../assets/img/—Pngtree—volume_off_glyph_black_icon_4071616.png");
+    background-size: contain;
+}
 
 /* Animações de troca de jogador */
 

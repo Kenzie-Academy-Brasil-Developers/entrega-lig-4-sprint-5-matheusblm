@@ -439,6 +439,19 @@ header nav {
 .winAnimation {
     animation: piscaPisca 1s linear infinite;
 }
+.sound-enable{
+    width: 20px;
+    height: 20px;
+    background-image: url("../assets/img/—Pngtree—sound_vector\ icon_3791371.png");
+    background-size: contain;
+    transition: .3s;
+}
+.sound-disable{
+    width: 20px;
+    height: 20px;
+    background-image: url("../assets/img/—Pngtree—volume_off_glyph_black_icon_4071616.png");
+    background-size: contain;
+}
 
 @keyframes piscaPisca {
     0% {
@@ -590,16 +603,3 @@ header nav {
     }
 }
 
-.sound-enable{
-    width: 20px;
-    height: 20px;
-    background-image: url("../assets/img/—Pngtree—sound_vector\ icon_3791371.png");
-    background-size: contain;
-    transition: .3s;
-}
-.sound-disable{
-    width: 20px;
-    height: 20px;
-    background-image: url("../assets/img/—Pngtree—volume_off_glyph_black_icon_4071616.png");
-    background-size: contain;
-}
