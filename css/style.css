@@ -1,84 +1,4 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -88,20 +8,9 @@ video {
     text-decoration: none;
 }
 
-
 /* HTML5 display-role reset for older browsers */
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
@@ -111,20 +20,15 @@ body {
     max-height: 100%;
 }
 
-ol,
-ul {
+ol, ul {
     list-style: none;
 }
 
-blockquote,
-q {
+blockquote, q {
     quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
 }
@@ -377,8 +281,7 @@ header nav {
     width: 20px;
 }
 
-#hamburguer::after,
-#hamburguer::before {
+#hamburguer::after, #hamburguer::before {
     content: "";
     display: block;
     width: 20px;
@@ -489,8 +392,13 @@ header nav {
     margin: 30px 0;
     transition: .5s;
 }
+
 .playerContainer {
-  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .winAnimation {
@@ -507,13 +415,6 @@ header nav {
     100% {
         opacity: 1;
     }
-}
-
-#versusContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
 }
 
 /* Animações de troca de jogador */
@@ -583,40 +484,37 @@ header nav {
 }
 
 @media screen and (min-width: 475px) {
-    #versusContainer{
-        gap:90px;
+    #versusContainer {
+        gap: 90px;
+        transition: .5s;
     }
-    .playerContainer{
+    .playerContainer {
+        display: flex;
         flex-direction: row;
-    }   
-.playerContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.premove {
-    animation: bounce 0.5s infinite ease-in;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(-10px);
+        align-items: center;
+        gap: 10px;
     }
-    30% {
-        transform: translateY(-5px);
+    .premove {
+        animation: bounce 0.5s infinite ease-in;
     }
-    48% {
-        transform: translateY(13px);
+    @keyframes bounce {
+        0% {
+            transform: translateY(-10px);
+        }
+        30% {
+            transform: translateY(-5px);
+        }
+        48% {
+            transform: translateY(13px);
+        }
+        52% {
+            transform: translateY(13px);
+        }
+        70% {
+            transform: translateY(-5px);
+        }
+        100% {
+            transform: translateY(-10px);
+        }
     }
-    52% {
-        transform: translateY(13px);
-    }
-    70% {
-        transform: translateY(-5px);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
-}
 }
