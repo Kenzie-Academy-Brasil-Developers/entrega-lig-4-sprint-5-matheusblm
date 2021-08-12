@@ -15,6 +15,7 @@ let namePlayerOne = ""
 let namePlayerTwo = ""
 let versusContainer;
 let versus;
+let novoJogador = 'um';
 
 const buttonSandwich = document.getElementById("buttonSandwich");
 
@@ -216,10 +217,12 @@ function createDisk(id, column, line) {
 
 function selectColumn(id) {
     let elemento = document.getElementById(id)
+    verificarTudo(elemento, novoJogador)
     if (currentPlayer == 1) {
         currentPlayer++;
         for (let i = 0; i < 6; i++) {
             if (elemento !== null) {
+                novoJogador = 'dois'
                 if (elemento.children[i].lastChild == null) {
                     let guardarClasse = elemento.children[i].id
                     let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
@@ -244,6 +247,7 @@ function selectColumn(id) {
     } else {
         for (let i = 0; i < 6; i++) {
             if (elemento !== null) {
+                novoJogador = 'um'
                 if (elemento.children[i].lastChild == null) {
                     let guardarClasse = elemento.children[i].id
                     let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
@@ -265,7 +269,7 @@ function selectColumn(id) {
                 }
             }
         }
-        currentPlayer--;
+        currentPlayer = 1;
     }
     document.getElementById('floatDisk').classList.remove('playerOne', 'playerTwo')
     diskPremove(id)
@@ -600,5 +604,18 @@ function premoveRemove() {
     if(travar === "travado"){
     let premoveDisk = document.getElementById('floatDisk')
     premoveDisk.classList.toggle('hidden')
+}
+
+function verificarTudo(element, local){
+    if(element != null){
+        if((element.children[5].lastChild == null) == false){
+            if(local == 'um'){
+                currentPlayer = 2 
+                return alertErro("A coluna selecionada nao pode receber mais discos")
+            }else{
+                currentPlayer = 1
+                return alertErro("A coluna selecionada nao pode receber mais discos")
+            }
+        }
     }
 }
