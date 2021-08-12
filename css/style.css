@@ -162,6 +162,7 @@ header {
 }
 
 #title {
+    font-family: Arial, Helvetica, sans-serif;
     width: 54%;
     text-align: end;
     margin: 0;
@@ -169,6 +170,7 @@ header {
     color: var(--cor-3);
     text-shadow: var(--cor-2) 2px 2px 2px;
     font-size: 2rem;
+    font-weight: bold;
 }
 
 nav a {
@@ -291,32 +293,46 @@ header span {
 }
 
 .playerOne {
-    background-color: red;
+    background-color: var(--cor-5);
 }
 
 .playerTwo {
-    background-color: blue;
+    background-color: var(--cor-3);
 }
 
 #container {
+    padding: 0 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: var(--cor-1);
+    width: 300px;
+    height: 210px;
+    border-radius: 15px 15px 0 0;
+    border-bottom: 10px solid var(--cor-3);
 }
 
 .column {
-    border: 1px solid #03045e;
-    width: 30px;
+    /* border: 1px solid #03045e; */
+    padding: 5px 0;
+    width: 40px;
     height: 200px;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--cor-2);
 }
 
 .line {
-    border: 1px solid #03045e;
+    border-radius: 50%;
     width: 30px;
-    height: 30%;
+    height: 30px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer {
@@ -373,8 +389,8 @@ header nav {
 }
 
 #hamburguer {
-    color: black;
-    border-top: 2px solid black;
+    color: var(--cor-3);
+    border-top: 2px solid var(--cor-3);
     width: 20px;
 }
 
@@ -490,9 +506,8 @@ header nav {
     margin: 30px 0;
     transition: .5s;
 }
-.playerContainer {
 
-}
+.playerContainer {}
 
 .winAnimation {
     animation: piscaPisca 1s linear infinite;
@@ -517,6 +532,7 @@ header nav {
     gap: 10px;
 }
 
+
 /* Animações de troca de jogador */
 
 .versus1 {
@@ -527,7 +543,7 @@ header nav {
     align-items: center;
     transform: rotateY(90deg);
     animation: rotateY1Start 0.3s forwards;
-    background-color: red;
+    background-color: var(--cor-5);
     clip-path: polygon(40% 0%, 40% 20%, 85% 25%, 85% 75%, 40% 80%, 40% 100%, 0% 50%);
 }
 
@@ -559,7 +575,7 @@ header nav {
     align-items: center;
     transform: rotateY(-90deg);
     animation: rotateY2Start 0.3s forwards;
-    background-color: blue;
+    background-color: var(--cor-3);
     clip-path: polygon(15% 25%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 15% 75%);
 }
 
@@ -584,40 +600,38 @@ header nav {
 }
 
 @media screen and (min-width: 475px) {
-    #versusContainer{
-        gap:90px;
+    #versusContainer {
+        gap: 90px;
     }
-    .playerContainer{
+    .playerContainer {
         flex-direction: row;
-    }   
-.playerContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.premove {
-    animation: bounce 0.5s infinite ease-in;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(-10px);
     }
-    30% {
-        transform: translateY(-5px);
+    .playerContainer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
-    48% {
-        transform: translateY(13px);
+    .premove {
+        animation: bounce 0.5s infinite ease-in;
     }
-    52% {
-        transform: translateY(13px);
+    @keyframes bounce {
+        0% {
+            transform: translateY(-10px);
+        }
+        30% {
+            transform: translateY(-5px);
+        }
+        48% {
+            transform: translateY(13px);
+        }
+        52% {
+            transform: translateY(13px);
+        }
+        70% {
+            transform: translateY(-5px);
+        }
+        100% {
+            transform: translateY(-10px);
+        }
     }
-    70% {
-        transform: translateY(-5px);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
-}
 }
