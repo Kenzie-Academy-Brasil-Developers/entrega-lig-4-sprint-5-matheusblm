@@ -185,7 +185,7 @@ header {
 #titleTema2 img {
     position: fixed;
     top: 0;
-    width: 14%;
+    width: 10%;
     margin: 10px auto;
     z-index: 1;
     transform: translateX(-50%);
@@ -397,7 +397,7 @@ footer {
 }
 
 #names li a {
-	color: var(--cor-3)
+    color: var(--cor-3)
 }
 
 header nav {
@@ -682,30 +682,27 @@ header nav {
 }
 
 @media screen and (min-width: 700px) {
-   .video-container{
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			width: 100%;
-			height: 100%; 
-			overflow: hidden;
-		}
-		
-	video{
-		min-width: 100%; 
-		min-height: 100%; 
-			
-			/* Setting width & height to auto prevents the browser from stretching or squishing the video */
-		width: auto;
-		height: auto;
-			
-			/* Center the video */
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		z-index: -1;
-     }
+    .video-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    video {
+        min-width: 100%;
+        min-height: 100%;
+        /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+        width: auto;
+        height: auto;
+        /* Center the video */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
     .alertWinOne {
         font-size: 16px;
         top: 20%;
