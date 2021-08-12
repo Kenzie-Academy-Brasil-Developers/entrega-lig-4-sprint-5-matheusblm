@@ -490,6 +490,26 @@ header nav {
     transition: .5s;
 }
 .playerContainer {
+
+}
+
+.winAnimation {
+    animation: piscaPisca 1s linear infinite;
+}
+
+@keyframes piscaPisca {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#versusContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -568,5 +588,34 @@ header nav {
     }
     .playerContainer{
         flex-direction: row;
+      
+.playerContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.premove {
+    animation: bounce 0.5s infinite ease-in;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-10px);
+    }
+    30% {
+        transform: translateY(-5px);
+    }
+    48% {
+        transform: translateY(13px);
+    }
+    52% {
+        transform: translateY(13px);
+    }
+    70% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(-10px);
     }
 }

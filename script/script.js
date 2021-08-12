@@ -37,13 +37,8 @@ const resetGame = buttonReset.addEventListener("click", function() {
         [0, 0, 0, 0, 0, 0],
     ];
     currentPlayer = 1
-
     versusContainer.innerHTML = "";
     createBoard()
-
-
-
-
     travar = undefined
 });
 
@@ -95,8 +90,6 @@ function startScreen() {
     startBackground.appendChild(pvpButton)
     startBackground.appendChild(gameCredit)
 
-
-
     cpuButton.addEventListener('click', function() {
         let typedTextOne = document.querySelector(".inputNameOne").value;
         let typedTextTwo = document.querySelector(".inputNameTwo").value;
@@ -118,11 +111,13 @@ function startScreen() {
 startScreen()
 
 function checkHorizontal(x, y) {
-    //check posições 1, 2, 3 e 4
     let countPlayer1 = 0
     let countPlayer2 = 0
     let currentPosition = Number(x)
     let yNumber = Number(y)
+    let arrayPlayerone = []
+    let arrayPlayerTwo = []
+
     for (let position = currentPosition; position > currentPosition - 4; position--) {
         countPlayer1 = 0
         countPlayer2 = 0
@@ -131,25 +126,43 @@ function checkHorizontal(x, y) {
 
             for (let i = position; i < position + 4; i++) {
                 if (tabuleiro[i][yNumber] === 1) {
+                    arrayPlayerone.push([i, yNumber])
                     countPlayer1++
                 }
 
                 if (tabuleiro[i][yNumber] === 2) {
+                    arrayPlayerTwo.push([i, yNumber])
                     countPlayer2++
                 }
             }
-        }
-        if (countPlayer1 === 4) {
-            travarGame('travar')
-            alertWin("Jogador 1")
-        }
-
-        if (countPlayer2 === 4) {
-            travarGame('travar')
-            alertWin("Jogador 2")
+            if (countPlayer1 === 4) {
+                let oneDisk = document.getElementsByClassName(arrayPlayerone[0][0] + "x" + arrayPlayerone[0][1])[0];
+                let twoDisk = document.getElementsByClassName(arrayPlayerone[1][0] + "x" + arrayPlayerone[1][1])[0];
+                let threeDisk = document.getElementsByClassName(arrayPlayerone[2][0] + "x" + arrayPlayerone[2][1])[0];
+                let fourDisk = document.getElementsByClassName(arrayPlayerone[3][0] + "x" + arrayPlayerone[3][1])[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
+                travarGame('travar')
+                alertWin(namePlayerOne)
+            } else if (countPlayer2 === 4) {
+                let oneDisk = document.getElementsByClassName(arrayPlayerTwo[0][0] + "x" + arrayPlayerTwo[0][1])[0];
+                let twoDisk = document.getElementsByClassName(arrayPlayerTwo[1][0] + "x" + arrayPlayerTwo[1][1])[0];
+                let threeDisk = document.getElementsByClassName(arrayPlayerTwo[2][0] + "x" + arrayPlayerTwo[2][1])[0];
+                let fourDisk = document.getElementsByClassName(arrayPlayerTwo[3][0] + "x" + arrayPlayerTwo[3][1])[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
+                travarGame('travar')
+                alertWin(namePlayerTwo)
+            } else {
+                arrayPlayerone = []
+                arrayPlayerTwo = []
+            }
         }
     }
-
 }
 
 
@@ -165,12 +178,18 @@ function createBoard() {
         startContainer.classList.add("getOut")
     }
     let gameContainer = document.getElementById('container')
+    let floatDisk = document.createElement('div')
+    floatDisk.classList.add('hidden', 'disk')
+    floatDisk.setAttribute('id', 'floatDisk')
+    gameContainer.appendChild(floatDisk)
 
     for (let i = 0; i < 7; i++) {
         let boardColumn = document.createElement('div')
         boardColumn.setAttribute('id', `column__${i}`)
         boardColumn.classList.add('column')
         boardColumn.addEventListener('click', () => selectColumn(travarGame(`column__${i}`)))
+        boardColumn.addEventListener('mouseenter', () => diskPremove(boardColumn.id))
+        boardColumn.addEventListener('mouseleave', () => premoveRemove())
         gameContainer.appendChild(boardColumn)
 
         for (let j = 0; j < 6; j++) {
@@ -182,13 +201,14 @@ function createBoard() {
         }
     }
     showPlayerTurn();
+
 }
 
-
-function createDisk(id) {
+function createDisk(id, column, line) {
     let currentLine = document.getElementById(id)
     newDisk = document.createElement('div')
     newDisk.classList.add('disk')
+    newDisk.classList.add(column + "x" + line)
     currentLine.appendChild(newDisk)
 }
 
@@ -245,6 +265,8 @@ function selectColumn(id) {
         }
         currentPlayer--;
     }
+    document.getElementById('floatDisk').classList.remove('playerOne', 'playerTwo')
+    diskPremove(id)
 }
 
 
@@ -252,20 +274,44 @@ function vertical() {
     for (let index in tabuleiro) {
         let count1 = 0
         let count2 = 0
+        let arrayPlayerone = []
+        let tearrayPlayerTwo = []
         for (let i in tabuleiro[index]) {
             if (tabuleiro[index][i] == 1) {
+                arrayPlayerone.push([index, i])
                 count1++
             } else {
                 count1 = 0
             }
 
             if (tabuleiro[index][i] == 2) {
+                tearrayPlayerTwo.push([index, i])
                 count2++
             } else {
                 count2 = 0
             }
+
             if (count1 === 4 || count2 === 4) {
-                let vitoria = count1 == 4 ? 'Jogador 1' : 'Jogador 2'
+                let vitoria = count1 == 4 ? namePlayerOne : namePlayerTwo
+                if (arrayPlayerone.length === 4) {
+                    let oneDisk = document.getElementsByClassName(arrayPlayerone[0][0] + "x" + arrayPlayerone[0][1])[0];
+                    let twoDisk = document.getElementsByClassName(arrayPlayerone[1][0] + "x" + arrayPlayerone[1][1])[0];
+                    let threeDisk = document.getElementsByClassName(arrayPlayerone[2][0] + "x" + arrayPlayerone[2][1])[0];
+                    let fourDisk = document.getElementsByClassName(arrayPlayerone[3][0] + "x" + arrayPlayerone[3][1])[0];
+                    oneDisk.classList.add("winAnimation")
+                    twoDisk.classList.add("winAnimation")
+                    threeDisk.classList.add("winAnimation")
+                    fourDisk.classList.add("winAnimation")
+                } else {
+                    let oneDisk = document.getElementsByClassName(tearrayPlayerTwo[0][0] + "x" + tearrayPlayerTwo[0][1])[0];
+                    let twoDisk = document.getElementsByClassName(tearrayPlayerTwo[1][0] + "x" + tearrayPlayerTwo[1][1])[0];
+                    let threeDisk = document.getElementsByClassName(tearrayPlayerTwo[2][0] + "x" + tearrayPlayerTwo[2][1])[0];
+                    let fourDisk = document.getElementsByClassName(tearrayPlayerTwo[3][0] + "x" + tearrayPlayerTwo[3][1])[0];
+                    oneDisk.classList.add("winAnimation")
+                    twoDisk.classList.add("winAnimation")
+                    threeDisk.classList.add("winAnimation")
+                    fourDisk.classList.add("winAnimation")
+                }
                 travarGame('travar')
                 alertWin(vitoria)
             }
@@ -281,13 +327,29 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line + 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line + 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line + 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 1")
+                alertWin(namePlayerOne)
 
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line + 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line + 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line + 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 2")
+                alertWin(namePlayerTwo)
 
             }
         }
@@ -299,13 +361,29 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line + 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line + 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line + 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 1")
+                alertWin(namePlayerOne)
 
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line + 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line + 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line + 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 2")
+                alertWin(amePlayerTwo)
             }
         }
     }
@@ -316,12 +394,28 @@ function checkDiagonalTopToBottom() {
             let three = tabuleiro[line + 2][column + 2];
             let four = tabuleiro[line + 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line + 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line + 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line + 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 1")
+                alertWin(namePlayerOne)
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line + 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line + 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line + 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 2")
+                alertWin(namePlayerTwo)
             }
         }
     }
@@ -336,14 +430,30 @@ function checkDiagonalBottomToTop() {
             let three = tabuleiro[line - 2][column + 2];
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line - 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line - 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line - 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 1")
+                alertWin(namePlayerOne)
 
 
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line - 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line - 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line - 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 2")
+                alertWin(namePlayerTwo)
 
             }
         }
@@ -355,12 +465,28 @@ function checkDiagonalBottomToTop() {
             let three = tabuleiro[line - 2][column + 2];
             let four = tabuleiro[line - 3][column + 3];
             if (one === 1 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line - 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line - 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line - 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 1")
+                alertWin(namePlayerOne)
             }
             if (one === 2 && one !== 0 && one === two && one === three && one === four) {
+                let oneDisk = document.getElementsByClassName(line + "x" + column)[0];
+                let twoDisk = document.getElementsByClassName((line - 1) + "x" + (column + 1))[0];
+                let threeDisk = document.getElementsByClassName((line - 2) + "x" + (column + 2))[0];
+                let fourDisk = document.getElementsByClassName((line - 3) + "x" + (column + 3))[0];
+                oneDisk.classList.add("winAnimation")
+                twoDisk.classList.add("winAnimation")
+                threeDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")
                 travarGame('travar')
-                alertWin("Jogador 2")
+                alertWin(namePlayerTwo)
             }
         }
     }
@@ -436,4 +562,33 @@ function showPlayerTurn() {
     versusContainer.appendChild(versus);
     versusContainer.appendChild(player2Container);
 
+
+}
+
+//Eventlistener para identificar se mouse está sobre uma coluna e rodar diskPremove de acordo com a coluna
+
+function diskPremove(currentColumn) {
+    let whoseTurn
+    if (currentPlayer === 1) {
+        whoseTurn = 'One'
+    }
+    if (currentPlayer === 2) {
+        whoseTurn = 'Two'
+    }
+
+    let columnPosition = document.getElementById(currentColumn).getBoundingClientRect()
+
+    let floatDisk = document.getElementById('floatDisk')
+    floatDisk.classList.remove('hidden')
+    floatDisk.classList.add('disk', `player${whoseTurn}`, 'premove')
+
+    floatDisk.style.position = 'fixed'
+    floatDisk.style.top = columnPosition.top - 40 + 'px'
+    floatDisk.style.left = columnPosition.left + 2 + 'px'
+
+}
+
+function premoveRemove() {
+    let premoveDisk = document.getElementById('floatDisk')
+    premoveDisk.classList.add('hidden')
 }
