@@ -83,29 +83,45 @@ header span {
     vertical-align: center;
 }
 
-.alertWin {
-    font-size: 17px;
+.alertWinOne {
+    font-size: 12px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 10%;
+    left: 51%;
     transform: translateX(-50%);
     text-align: center;
     padding: 10px;
     transition-duration: 0.8s;
     z-index: 1;
-    color: white;
+    color: #1c323b;
     border-style: hidden;
     border-radius: 4px;
-    background-color: blue;
+    background-color: var(--cor-5);
     width: 100px;
-    height: 50px;
+    height: 25px;
 }
-
-.alertErro {
-    font-size: 17px;
+.alertWinTwo {
+    font-size: 12px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 10%;
+    left: 51%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 10px;
+    transition-duration: 0.8s;
+    z-index: 1;
+    color: var(--cor-1);
+    border-style: hidden;
+    border-radius: 4px;
+    background-color: var(--cor-3);
+    width: 100px;
+    height: 20px;
+}
+.alertErro {
+    font-size: 12px;
+    position: absolute;
+    top: 10%;
+    left: 51%;
     transform: translateX(-50%);
     text-align: center;
     padding: 10px;
@@ -116,7 +132,7 @@ header span {
     border-radius: 4px;
     background-color: #ff4d6d;
     width: 150px;
-    height: 60px;
+    height: 20px;
 }
 
 .gameTie {
@@ -513,5 +529,33 @@ header nav {
         100% {
             transform: translateY(-10px);
         }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .alertWinOne {
+        font-size: 17px;
+        top: 20%;
+        left: 30%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 50px;
+    }
+    .alertWinTwo {
+        font-size: 17px;
+        top: 20%;
+        left: 70%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 50px;
+    }
+    .alertErro {
+        font-size: 17px;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 40px;
     }
 }
