@@ -21,7 +21,38 @@ let enableSom = true
 const musicOff = document.getElementById("musicOff");
 const buttonSandwich = document.getElementById("buttonSandwich");
 
-musicOff.addEventListener("click", function(){
+let somSelectPlayerOne = document.getElementById("selectDisk")
+let somSelectPlayerTwo = document.getElementById("selectDisk")
+let somPlayerOneWin = document.getElementById("winSound")
+let somPlayerTwoWin = document.getElementById("winSound")
+
+
+const changeThemeUm = document.getElementById('temaDois').addEventListener('click', function() {
+    let titleDefault = document.getElementById('title')
+    let titleTwo = document.getElementById('titleTema2')
+    titleDefault.classList.add('hidden')
+    titleTwo.classList.remove('hidden')
+    somSelectPlayerOne = document.getElementById("selectNaruto")
+    somSelectPlayerTwo = document.getElementById("selectSasuke")
+    somPlayerOneWin = document.getElementById("winNaruto")
+    somPlayerTwoWin = document.getElementById("winSasuke")
+    videoNaruto()
+
+
+})
+const changeThemeDois = document.getElementById('temaUm').addEventListener('click', function() {
+    let titleDefault = document.getElementById('title')
+    let titleTwo = document.getElementById('titleTema2')
+    titleDefault.classList.remove('hidden')
+    titleTwo.classList.add('hidden')
+    somSelectPlayerOne = document.getElementById("selectDisk")
+    somSelectPlayerTwo = document.getElementById("selectDisk")
+    somPlayerOneWin = document.getElementById("winSound")
+    somPlayerTwoWin = document.getElementById("winSound")
+})
+
+
+const musicDisable = musicOff.addEventListener("click", function(){
     if(enableSom === true){
     soundBackground.pause()
     soundBackground.currentTime = 0
@@ -37,7 +68,8 @@ musicOff.addEventListener("click", function(){
     }
 
 })
-buttonSandwich.addEventListener('click', function() {
+
+const sandwichButton = buttonSandwich.addEventListener('click', function() {
     const nav = document.getElementById("nav");
     nav.classList.toggle("active");
 });
@@ -59,6 +91,118 @@ const resetGame = buttonReset.addEventListener("click", function() {
     createBoard()
     travar = undefined
 });
+
+
+
+function createBoard() {
+
+    let startContainer = document.getElementById('startContainer')
+    let credits = document.querySelector('.gameCreditDefault')
+    if (startContainer !== null && credits !== null) {
+        credits.classList.remove("gameCreditDefault")
+        startContainer.classList.add("getOut")
+        startContainer.classList.remove("startContainerDefault")
+        startContainer.classList.add("getOut")
+    }
+    let gameContainer = document.getElementById('container')
+    let floatDisk = document.createElement('div')
+    floatDisk.classList.add('hidden', 'disk')
+    floatDisk.setAttribute('id', 'floatDisk')
+    gameContainer.appendChild(floatDisk)
+
+    for (let i = 0; i < 7; i++) {
+        let boardColumn = document.createElement('div')
+        boardColumn.setAttribute('id', `column__${i}`)
+        boardColumn.classList.add('column')
+        boardColumn.addEventListener('click', () => selectColumn(travarGame(`column__${i}`)))
+        boardColumn.addEventListener('mouseenter', () => diskPremove(boardColumn.id))
+        boardColumn.addEventListener('mouseleave', () => premoveRemove())
+        gameContainer.appendChild(boardColumn)
+
+        for (let j = 0; j < 6; j++) {
+            let boardLine = document.createElement('div')
+            boardLine.classList.add(`line__${i}x${j}`)
+            boardLine.id = `line__${i}x${j}`
+            boardLine.classList.add('line')
+            boardColumn.appendChild(boardLine)
+        }
+    }
+    showPlayerTurn();
+
+}
+
+function createDisk(id, column, line) {
+    let currentLine = document.getElementById(id)
+    newDisk = document.createElement('div')
+    newDisk.classList.add('disk')
+    newDisk.classList.add(column + "x" + line)
+    currentLine.appendChild(newDisk)
+}
+
+function selectColumn(id) {
+    let elemento = document.getElementById(id)
+    verificarTudo(elemento, novoJogador)
+    if (currentPlayer == 1) {
+        currentPlayer++;
+        for (let i = 0; i < 6; i++) {
+            if (elemento !== null) {
+                novoJogador = 'dois'
+                if (elemento.children[i].lastChild == null) {
+                    let guardarClasse = elemento.children[i].id
+                    let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+                    createDisk(guardarClasse, pegarPosicao[0], pegarPosicao[1])
+                    tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
+                    newDisk.classList.add("playerOne");
+                    columnsIsFull(pegarPosicao[0])
+                    versus.classList.add("versus1Change")
+                    audioSelectDisk(somSelectPlayerOne)
+                    vertical()
+                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                    checkDiagonalTopToBottom()
+                    checkDiagonalBottomToTop()
+                    empate()
+                    setTimeout(function() {
+                        versus.classList.toggle("versus1Change")
+                        versus.classList.toggle("versus2")
+                        versus.classList.toggle("versus1")
+                    }, 300)
+                    break
+                }
+            }
+        }
+    } else {
+        for (let i = 0; i < 6; i++) {
+            if (elemento !== null) {
+                novoJogador = 'um'
+                if (elemento.children[i].lastChild == null) {
+                    let guardarClasse = elemento.children[i].id
+                    let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
+                    tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
+                    createDisk(guardarClasse, pegarPosicao[0], pegarPosicao[1])
+                    newDisk.classList.add("playerTwo");
+                    columnsIsFull(pegarPosicao[0])
+                    versus.classList.add("versus2Change")
+                    audioSelectDisk(somSelectPlayerTwo)
+                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
+                    checkDiagonalTopToBottom()
+                    checkDiagonalBottomToTop()
+                    vertical()
+                    empate()
+                    setTimeout(function() {
+                        versus.classList.remove("versus2Change")
+                        versus.classList.toggle("versus2")
+                        versus.classList.toggle("versus1")
+                    }, 300)
+                    break
+                }
+            }
+        }
+        currentPlayer = 1;
+    }
+    document.getElementById('floatDisk').classList.remove('playerOne', 'playerTwo')
+    diskPremove(id)
+}
+
 
 function startScreen() {
     let startContainer = document.createElement('div')
@@ -159,7 +303,7 @@ function checkHorizontal(x, y) {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerOneWin)
                 premoveRemove()
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
@@ -172,7 +316,7 @@ function checkHorizontal(x, y) {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerTwoWin)
                 premoveRemove()
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
@@ -183,118 +327,6 @@ function checkHorizontal(x, y) {
         }
     }
 }
-
-
-
-function createBoard() {
-
-    let startContainer = document.getElementById('startContainer')
-    let credits = document.querySelector('.gameCreditDefault')
-    if (startContainer !== null && credits !== null) {
-        credits.classList.remove("gameCreditDefault")
-        startContainer.classList.add("getOut")
-        startContainer.classList.remove("startContainerDefault")
-        startContainer.classList.add("getOut")
-    }
-    let gameContainer = document.getElementById('container')
-    let floatDisk = document.createElement('div')
-    floatDisk.classList.add('hidden', 'disk')
-    floatDisk.setAttribute('id', 'floatDisk')
-    gameContainer.appendChild(floatDisk)
-
-    for (let i = 0; i < 7; i++) {
-        let boardColumn = document.createElement('div')
-        boardColumn.setAttribute('id', `column__${i}`)
-        boardColumn.classList.add('column')
-        boardColumn.addEventListener('click', () => selectColumn(travarGame(`column__${i}`)))
-        boardColumn.addEventListener('mouseenter', () => diskPremove(boardColumn.id))
-        boardColumn.addEventListener('mouseleave', () => premoveRemove())
-        gameContainer.appendChild(boardColumn)
-
-        for (let j = 0; j < 6; j++) {
-            let boardLine = document.createElement('div')
-            boardLine.classList.add(`line__${i}x${j}`)
-            boardLine.id = `line__${i}x${j}`
-            boardLine.classList.add('line')
-            boardColumn.appendChild(boardLine)
-        }
-    }
-    showPlayerTurn();
-
-}
-
-function createDisk(id, column, line) {
-    let currentLine = document.getElementById(id)
-    newDisk = document.createElement('div')
-    newDisk.classList.add('disk')
-    newDisk.classList.add(column + "x" + line)
-    currentLine.appendChild(newDisk)
-}
-
-function selectColumn(id) {
-    let elemento = document.getElementById(id)
-    verificarTudo(elemento, novoJogador)
-    if (currentPlayer == 1) {
-        currentPlayer++;
-        for (let i = 0; i < 6; i++) {
-            if (elemento !== null) {
-                novoJogador = 'dois'
-                if (elemento.children[i].lastChild == null) {
-                    let guardarClasse = elemento.children[i].id
-                    let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-                    createDisk(guardarClasse, pegarPosicao[0], pegarPosicao[1])
-                    tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
-                    newDisk.classList.add("playerOne");
-                    columnsIsFull(pegarPosicao[0])
-                    versus.classList.add("versus1Change")
-                    audioSelectDisk()
-                    vertical()
-                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-                    checkDiagonalTopToBottom()
-                    checkDiagonalBottomToTop()
-                    empate()
-                    setTimeout(function() {
-                        versus.classList.toggle("versus1Change")
-                        versus.classList.toggle("versus2")
-                        versus.classList.toggle("versus1")
-                    }, 300)
-                    break
-                }
-            }
-        }
-    } else {
-        for (let i = 0; i < 6; i++) {
-            if (elemento !== null) {
-                novoJogador = 'um'
-                if (elemento.children[i].lastChild == null) {
-                    let guardarClasse = elemento.children[i].id
-                    let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-                    tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
-                    createDisk(guardarClasse, pegarPosicao[0], pegarPosicao[1])
-                    newDisk.classList.add("playerTwo");
-                    columnsIsFull(pegarPosicao[0])
-                    versus.classList.add("versus2Change")
-                    audioSelectDisk()
-                    checkHorizontal(pegarPosicao[0], pegarPosicao[1])
-                    checkDiagonalTopToBottom()
-                    checkDiagonalBottomToTop()
-                    vertical()
-                    empate()
-                    setTimeout(function() {
-                        versus.classList.remove("versus2Change")
-                        versus.classList.toggle("versus2")
-                        versus.classList.toggle("versus1")
-                    }, 300)
-                    break
-                }
-            }
-        }
-        currentPlayer = 1;
-    }
-    document.getElementById('floatDisk').classList.remove('playerOne', 'playerTwo')
-    diskPremove(id)
-}
-
 
 function vertical() {
     for (let index in tabuleiro) {
@@ -328,7 +360,7 @@ function vertical() {
                     twoDisk.classList.add("winAnimation")
                     threeDisk.classList.add("winAnimation")
                     fourDisk.classList.add("winAnimation")
-                    audioWin()
+                    audioWin(somPlayerOneWin)
                     alertWinOne(vitoria)
                     premoveRemove()
                 } else {
@@ -340,7 +372,7 @@ function vertical() {
                     twoDisk.classList.add("winAnimation")
                     threeDisk.classList.add("winAnimation")
                     fourDisk.classList.add("winAnimation")
-                    audioWin()
+                    audioWin(somPlayerTwoWin)
                     alertWinTwo(vitoria)
                     premoveRemove()
                 }
@@ -366,7 +398,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerOneWin)
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
 
@@ -380,7 +412,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerTwoWin)
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
 
@@ -402,7 +434,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerOneWin)
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
 
@@ -416,7 +448,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerTwoWin)
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
             }
@@ -437,7 +469,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerOneWin)
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
             }
@@ -450,7 +482,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerTwoWin)
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
             }
@@ -475,7 +507,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerOneWin)
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
 
@@ -490,7 +522,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerTwoWin)
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
 
@@ -512,7 +544,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerOneWin)
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
             }
@@ -525,7 +557,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
-                audioWin()
+                audioWin(somPlayerTwoWin)
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
             }
@@ -672,9 +704,8 @@ function audioBackGround() {
     }
 }
 
-function audioSelectDisk() {
+function audioSelectDisk(sound) {
     if (enableSom == true) {
-        let sound = document.getElementById("selectDisk")
         sound.pause()
         sound.currentTime = 0
         sound.play()
@@ -683,9 +714,8 @@ function audioSelectDisk() {
 }
 
 
-function audioWin (){
+function audioWin (sound){
     if(enableSom == true){
-    let sound = document.getElementById("winSound")
     sound.play()
     sound.volume = 0.2
     }
@@ -705,17 +735,43 @@ function empate() {
     }
 }
 
-document.getElementById('temaDois').addEventListener('click', function() {
-    let titleDefault = document.getElementById('title')
-    let titleTwo = document.getElementById('titleTema2')
+function videoNaruto() {
+    let video = document.getElementById("backgroundVideo")
+        video.pause()
+        video.currentTime = 0
+        video.play()
+        video.volume = 0.1
+}
 
-    titleDefault.classList.add('hidden')
-    titleTwo.classList.remove('hidden')
-})
-document.getElementById('temaUm').addEventListener('click', function() {
-    let titleDefault = document.getElementById('title')
-    let titleTwo = document.getElementById('titleTema2')
+// function audioSelectDiskNaruto(sound) {
+//     if (enableSom == true) {
+//         sound.pause()
+//         sound.currentTime = 0
+//         sound.play()
+//         sound.volume = 0.3
+//     }
+// }
 
-    titleDefault.classList.remove('hidden')
-    titleTwo.classList.add('hidden')
-})
+// function audioSelectDiskSasuke(sound) {
+//     if (enableSom == true) {
+//         sound.pause()
+//         sound.currentTime = 0
+//         sound.play()
+//         sound.volume = 0.3
+//     }
+// }
+
+// function audioWinNaruto (){
+//     if(enableSom == true){
+//     sound.play()
+//     sound.volume = 0.2
+//     }
+// }
+
+
+// function audioWinSasuke(){
+//     if(enableSom == true){
+//     sound.play()
+//     sound.volume = 0.2
+//     }
+// }
