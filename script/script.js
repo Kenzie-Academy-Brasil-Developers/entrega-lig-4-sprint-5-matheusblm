@@ -26,6 +26,7 @@ let somPlayerOneWin = document.getElementById("winSound")
 let somPlayerTwoWin = document.getElementById("winSound")
 
 
+
 const changeThemeUm = document.getElementById('temaDois').addEventListener('click', function() {
     let titleDefault = document.getElementById('title')
     let titleTwo = document.getElementById('titleTema2')
@@ -35,8 +36,19 @@ const changeThemeUm = document.getElementById('temaDois').addEventListener('clic
     somSelectPlayerTwo = document.getElementById("selectSasuke")
     somPlayerOneWin = document.getElementById("winNaruto")
     somPlayerTwoWin = document.getElementById("winSasuke")
+    if(namePlayerOne === "PlayerOne"){
+        namePlayerOne = "Naruto"
+    }
+    if(namePlayerTwo === "PlayerTwo"){
+        namePlayerTwo = "Sasuke"
+    }
     videoNaruto()
+    versusContainer.innerHTML = "";
+    container.innerText = ""
+    createBoard()
 
+  
+    
 
 })
 const changeThemeDois = document.getElementById('temaUm').addEventListener('click', function() {
@@ -48,6 +60,7 @@ const changeThemeDois = document.getElementById('temaUm').addEventListener('clic
     somSelectPlayerTwo = document.getElementById("selectDisk")
     somPlayerOneWin = document.getElementById("winSound")
     somPlayerTwoWin = document.getElementById("winSound")
+    
 })
 
 
@@ -251,7 +264,7 @@ function startScreen() {
         let typedTextOne = document.querySelector(".inputNameOne").value;
         let typedTextTwo = document.querySelector(".inputNameTwo").value;
         if (typedTextOne === "") {
-            namePlayerOne = "PlayerOne"
+                namePlayerOne = "PlayerOne"
         } else {
             namePlayerOne = typedTextOne
         }
