@@ -60,14 +60,12 @@ header {
     height: 60px;
     color: #caf0f8;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-content: center;
 }
 
 #title {
-    width: 54%;
-    text-align: end;
+    text-align: center;
     margin: 0;
     text-transform: uppercase;
     color: var(--cor-3);
@@ -267,7 +265,6 @@ header nav {
 
 #buttonSandwich {
     display: flex;
-    padding: 0.5rem 1rem;
     border: none;
     margin: 0 15px;
     background: none;
