@@ -287,7 +287,6 @@ header span {
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    background-color: black;
 }
 
 .playerOne {
@@ -491,7 +490,7 @@ header nav {
     transition: .5s;
 }
 .playerContainer {
-
+  
 }
 
 .winAnimation {

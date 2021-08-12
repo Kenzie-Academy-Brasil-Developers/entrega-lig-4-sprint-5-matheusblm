@@ -144,6 +144,7 @@ function checkHorizontal(x, y) {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                premoveRemove()
                 travarGame('travar')
                 alertWin(namePlayerOne)
             } else if (countPlayer2 === 4) {
@@ -155,6 +156,7 @@ function checkHorizontal(x, y) {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                premoveRemove()
                 travarGame('travar')
                 alertWin(namePlayerTwo)
             } else {
@@ -302,6 +304,7 @@ function vertical() {
                     twoDisk.classList.add("winAnimation")
                     threeDisk.classList.add("winAnimation")
                     fourDisk.classList.add("winAnimation")
+                    premoveRemove()
                 } else {
                     let oneDisk = document.getElementsByClassName(tearrayPlayerTwo[0][0] + "x" + tearrayPlayerTwo[0][1])[0];
                     let twoDisk = document.getElementsByClassName(tearrayPlayerTwo[1][0] + "x" + tearrayPlayerTwo[1][1])[0];
@@ -311,6 +314,7 @@ function vertical() {
                     twoDisk.classList.add("winAnimation")
                     threeDisk.classList.add("winAnimation")
                     fourDisk.classList.add("winAnimation")
+                    premoveRemove()
                 }
                 travarGame('travar')
                 alertWin(vitoria)
@@ -334,7 +338,7 @@ function checkDiagonalTopToBottom() {
                 oneDisk.classList.add("winAnimation")
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
-                fourDisk.classList.add("winAnimation")
+                fourDisk.classList.add("winAnimation")              
                 travarGame('travar')
                 alertWin(namePlayerOne)
 
@@ -568,11 +572,15 @@ function showPlayerTurn() {
 //Eventlistener para identificar se mouse está sobre uma coluna e rodar diskPremove de acordo com a coluna
 
 function diskPremove(currentColumn) {
+    if(travar === "travado"){
+        premoveRemove()
+    }else{
+    if(currentColumn != null){
     let whoseTurn
     if (currentPlayer === 1) {
         whoseTurn = 'One'
     }
-    if (currentPlayer === 2) {
+    else if(currentPlayer === 2) {
         whoseTurn = 'Two'
     }
 
@@ -585,10 +593,12 @@ function diskPremove(currentColumn) {
     floatDisk.style.position = 'fixed'
     floatDisk.style.top = columnPosition.top - 40 + 'px'
     floatDisk.style.left = columnPosition.left + 2 + 'px'
-
+    }
+    }
 }
-
 function premoveRemove() {
+    if(travar === "travado"){
     let premoveDisk = document.getElementById('floatDisk')
-    premoveDisk.classList.add('hidden')
+    premoveDisk.classList.toggle('hidden')
+    }
 }
