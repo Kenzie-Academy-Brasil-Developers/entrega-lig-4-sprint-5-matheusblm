@@ -623,10 +623,12 @@ header nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: rotateY(90deg);
-    animation: rotateY1Start 0.3s forwards;
-    background-color: var(--cor-5);
-    clip-path: polygon(40% 0%, 40% 20%, 85% 25%, 85% 75%, 40% 80%, 40% 100%, 0% 50%);
+    /* transform: rotateY(90deg); */
+    /* animation: rotateY1Start 0.3s forwards; */
+    /* background-color: var(--cor-5); */
+    background-image: url("../assets/img/kunai.png");
+    background-size: contain;
+    /* clip-path: polygon(6% 50%, 53% 29%, 60% 44%, 61% 42%, 63% 46%, 68% 44%, 86% 45%, 90% 37%, 93% 39%, 95% 45%, 95% 53%, 93% 61%, 91% 63%, 88% 61%, 86% 57%, 63% 55%, 61% 57%, 61% 54%, 53% 71%); */
 }
 
 @keyframes rotateY1Start {
@@ -679,6 +681,10 @@ header nav {
         clip-path: polygon(15% 25%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 15% 75%);
         transform: rotateY(-90deg);
     }
+}
+
+.versusNaruto {
+    background-image: url(./assets/img/kunai.png);
 }
 
 @media screen and (min-width: 475px) {

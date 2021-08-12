@@ -662,6 +662,9 @@ function verificarTudo(element, local) {
             }
         }
     }
+    setTimeout(() => {
+        versus.classList.remove('versus1Change', 'versus2Change')
+    }, 500);
 }
 
 function audioBackGround() {
