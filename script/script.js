@@ -16,10 +16,22 @@ let namePlayerTwo = ""
 let versusContainer;
 let versus;
 let novoJogador = 'um';
-
+let soundBackground = document.getElementById("backgroundSound")
+let enableSom = true
+const musicOff = document.getElementById("musicOff");
 const buttonSandwich = document.getElementById("buttonSandwich");
 
+musicOff.addEventListener("click", function(){
+    if(enableSom === true){
+    soundBackground.pause()
+    soundBackground.currentTime = 0
+    enableSom = false
+    }else{
+    soundBackground.play()
+    enableSom = true
+    }
 
+})
 buttonSandwich.addEventListener('click', function() {
     const nav = document.getElementById("nav");
     nav.classList.toggle("active");
@@ -619,7 +631,7 @@ function diskPremove(currentColumn) {
 
     floatDisk.style.position = 'fixed'
     floatDisk.style.top = columnPosition.top - 40 + 'px'
-    floatDisk.style.left = columnPosition.left + 2 + 'px'
+    floatDisk.style.left = columnPosition.left + 5 + 'px'
     }
     }
 }
@@ -645,16 +657,24 @@ function verificarTudo(element, local){
 }
 
 function audioBackGround() {
-    let sound = document.getElementById("backgroundSound")
-    sound.play()
+    if(enableSom == true){
+        soundBackground.loop = true
+        soundBackground.play()
+    }
 }
 
 function audioSelectDisk (){
-    let sound = document.getElementById("selectDisk")
-    sound.play()
+    if(enableSom == true){
+        let sound = document.getElementById("selectDisk")
+        sound.pause()
+        sound.currentTime = 0 
+        sound.play()
+    }
 }
 
 function audioWin (){
+    if(enableSom == true){
     let sound = document.getElementById("winSound")
     sound.play()
+    }
 }
