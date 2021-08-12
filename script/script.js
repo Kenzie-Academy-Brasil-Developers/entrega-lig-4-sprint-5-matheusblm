@@ -247,6 +247,7 @@ function selectColumn(id) {
                     checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                     checkDiagonalTopToBottom()
                     checkDiagonalBottomToTop()
+                    empate()
                     setTimeout(function() {
                         versus.classList.toggle("versus1Change")
                         versus.classList.toggle("versus2")
@@ -273,6 +274,7 @@ function selectColumn(id) {
                     checkDiagonalTopToBottom()
                     checkDiagonalBottomToTop()
                     vertical()
+                    empate()
                     setTimeout(function() {
                         versus.classList.remove("versus2Change")
                         versus.classList.toggle("versus2")
@@ -676,5 +678,19 @@ function audioWin (){
     if(enableSom == true){
     let sound = document.getElementById("winSound")
     sound.play()
+    }
+}
+
+function empate(){
+    let contandoEmpate = 0
+    for(let i in tabuleiro){
+        if(tabuleiro[i][5] !== 0){
+            contandoEmpate++
+        }
+    }
+
+    if(contandoEmpate == 7){
+        travarGame('travar')
+        return alertErro("Empatou!")
     }
 }
