@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id = "s"  rel="stylesheet" href="./css/style.css">
-    <link id = "s1" rel="stylesheet" href="./css/style1.css" disabled=true>
+    <link id="s" rel="stylesheet" href="./css/style.css">
+    <link id="s1" rel="stylesheet" href="./css/style1.css" disabled=true>
     <title>Lig 4</title>
 </head>
 
@@ -14,37 +14,40 @@
     <div id="bigContainer">
         <header>
             <h1 id="title">Lig 4</h1>
+            <figure id="titleTema2" class="hidden">
+                <img src="https://fontmeme.com/permalink/210812/e1da16fbbe4c4a519c8b4533a5056532.png" alt="Lig-4 Naruto">
+            </figure>
             <nav id="nav">
                 <button id="buttonSandwich">
                     <span id="hamburguer"></span>
                 </button>
                 <ul id="config">
-                    <li><button id="musicOff" >Som off</button></li>
+                    <li><button id="musicOff">Som off</button></li>
                     <li><a href="javascript:s.disabled=false; s1.disabled=true;" id="temaUm">Tema Padrao</a></li>
                     <li><a href="javascript:s.disabled=true; s1.disabled=false;" id="temaDois">Tema 2</a></li>
                 </ul>
             </nav>
         </header>
-        <video id = "backgroundVideo" src="../assets/img/Naruto vs Sasuke「AMV」The Awakening [Final Battle].mp4" autoplay muted loop></video>
+        <video id="backgroundVideo" src="../assets/img/Naruto vs Sasuke「AMV」The Awakening [Final Battle].mp4" autoplay muted loop></video>
         <div id="container">
         </div>
         <button id="buttonReset">Reset Game!</button>
         <div id="versusContainer"></div>
-       
+
         <footer>
             <ul id="names">
                 <li><a href="https://www.linkedin.com/in/matheus-b-648aaa111/" target="_blank">Matheus bueno</a></li>
                 <li><a href="https://www.linkedin.com/in/natanws/" target="_blank"> Natan dos Santo</a></li>
-                <li><a href="https://www.linkedin.com/in/wallace-oliveira-702497209/" target="_blank" >Wallace Silva</a></li>
+                <li><a href="https://www.linkedin.com/in/wallace-oliveira-702497209/" target="_blank">Wallace Silva</a></li>
                 <li><a href="https://www.linkedin.com/in/lucas-elias-fideles-bas%C3%ADlio-a0b509206/" target="_blank">Lucas Elias</a> </li>
             </ul>
         </footer>
     </div>
     <picture>
         <audio id="backgroundSound" src="./assets/audio/Naruto - Strong and Strike .mp3" loop></audio>
-        <audio id = "selectDisk"src="./assets/audio/sound.wav"></audio>
-        <audio id = "winSound" src="./assets/audio/kc78v26_1.mp3"></audio>
-       
+        <audio id="selectDisk" src="./assets/audio/sound.wav"></audio>
+        <audio id="winSound" src="./assets/audio/kc78v26_1.mp3"></audio>
+
     </picture>
     <script src="./script/script.js"></script>
 </body>
