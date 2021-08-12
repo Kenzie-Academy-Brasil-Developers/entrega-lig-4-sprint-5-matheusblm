@@ -20,7 +20,6 @@ let soundBackground = document.getElementById("backgroundSound")
 let enableSom = true
 const musicOff = document.getElementById("musicOff");
 const buttonSandwich = document.getElementById("buttonSandwich");
-
 let somSelectPlayerOne = document.getElementById("selectDisk")
 let somSelectPlayerTwo = document.getElementById("selectDisk")
 let somPlayerOneWin = document.getElementById("winSound")
@@ -628,8 +627,8 @@ function showPlayerTurn() {
     let diskP2 = document.createElement("div");
     versus = document.createElement("div");
 
-    player1Container.classList.add("playerContainer")
-    player2Container.classList.add("playerContainer")
+    player1Container.classList.add("playerContainer", "playerOneBackground")
+    player2Container.classList.add("playerContainer", "playerTwoBackground")
     diskP1.classList.add("disk", "playerOne");
     diskP2.classList.add("disk", "playerTwo");
     versus.classList.add("versus1");
@@ -743,35 +742,4 @@ function videoNaruto() {
         video.volume = 0.1
 }
 
-// function audioSelectDiskNaruto(sound) {
-//     if (enableSom == true) {
-//         sound.pause()
-//         sound.currentTime = 0
-//         sound.play()
-//         sound.volume = 0.3
-//     }
-// }
 
-// function audioSelectDiskSasuke(sound) {
-//     if (enableSom == true) {
-//         sound.pause()
-//         sound.currentTime = 0
-//         sound.play()
-//         sound.volume = 0.3
-//     }
-// }
-
-// function audioWinNaruto (){
-//     if(enableSom == true){
-//     sound.play()
-//     sound.volume = 0.2
-//     }
-// }
-
-
-// function audioWinSasuke(){
-//     if(enableSom == true){
-//     sound.play()
-//     sound.volume = 0.2
-//     }
-// }
