@@ -21,14 +21,19 @@ let enableSom = true
 const musicOff = document.getElementById("musicOff");
 const buttonSandwich = document.getElementById("buttonSandwich");
 
-musicOff.addEventListener("click", function() {
-    if (enableSom === true) {
-        soundBackground.pause()
-        soundBackground.currentTime = 0
-        enableSom = false
-    } else {
-        soundBackground.play()
-        enableSom = true
+musicOff.addEventListener("click", function(){
+    if(enableSom === true){
+    soundBackground.pause()
+    soundBackground.currentTime = 0
+    enableSom = false
+    musicOff.classList.toggle("sound-enable");
+    musicOff.classList.toggle("sound-disable");
+
+    }else{
+    soundBackground.play()
+    enableSom = true
+    musicOff.classList.toggle("sound-enable");
+    musicOff.classList.toggle("sound-disable");
     }
 
 })
@@ -663,6 +668,7 @@ function audioBackGround() {
     if (enableSom == true) {
         soundBackground.loop = true
         soundBackground.play()
+        soundBackground.volume = 0.3
     }
 }
 
@@ -672,13 +678,16 @@ function audioSelectDisk() {
         sound.pause()
         sound.currentTime = 0
         sound.play()
+        sound.volume = 0.3
     }
 }
 
-function audioWin() {
-    if (enableSom == true) {
-        let sound = document.getElementById("winSound")
-        sound.play()
+
+function audioWin (){
+    if(enableSom == true){
+    let sound = document.getElementById("winSound")
+    sound.play()
+    sound.volume = 0.2
     }
 }
 
