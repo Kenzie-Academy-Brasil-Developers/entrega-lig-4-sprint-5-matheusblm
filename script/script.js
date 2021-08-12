@@ -220,13 +220,17 @@ function selectColumn(id) {
             if (elemento !== null) {
                 if (elemento.children[i].lastChild == null) {
                     let guardarClasse = elemento.children[i].id
+                    createDisk(guardarClasse)
                     let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-                    createDisk(guardarClasse, pegarPosicao[0], pegarPosicao[1])
                     tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 1
                     newDisk.classList.add("playerOne");
                     columnsIsFull(pegarPosicao[0])
-                    versus.classList.toggle("versus2");
-                    versus.classList.toggle("versus1");
+                    versus.classList.add("versus1Change")
+                    setTimeout(function() {
+                        versus.classList.toggle("versus1Change")
+                        versus.classList.toggle("versus2")
+                        versus.classList.toggle("versus1")
+                    }, 300)
                     vertical()
                     checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                     checkDiagonalTopToBottom()
@@ -240,13 +244,17 @@ function selectColumn(id) {
             if (elemento !== null) {
                 if (elemento.children[i].lastChild == null) {
                     let guardarClasse = elemento.children[i].id
+                    createDisk(guardarClasse)
                     let pegarPosicao = elemento.children[i].id.replace(/[^0-9]/gi, "");
-                    createDisk(guardarClasse, pegarPosicao[0], pegarPosicao[1])
                     tabuleiro[pegarPosicao[0]][pegarPosicao[1]] = 2;
                     newDisk.classList.add("playerTwo");
                     columnsIsFull(pegarPosicao[0])
-                    versus.classList.toggle("versus1");
-                    versus.classList.toggle("versus2");
+                    versus.classList.add("versus2Change")
+                    setTimeout(function() {
+                        versus.classList.remove("versus2Change")
+                        versus.classList.toggle("versus2")
+                        versus.classList.toggle("versus1")
+                    }, 300)
                     checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                     checkDiagonalTopToBottom()
                     checkDiagonalBottomToTop()
@@ -553,6 +561,7 @@ function showPlayerTurn() {
     versusContainer.appendChild(player1Container);
     versusContainer.appendChild(versus);
     versusContainer.appendChild(player2Container);
+
 
 }
 
