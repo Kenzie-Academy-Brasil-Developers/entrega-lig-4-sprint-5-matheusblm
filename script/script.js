@@ -63,11 +63,8 @@ function startScreen() {
 
     let cpuButton = document.createElement('button')
     cpuButton.classList.add('cpuButtonDefault')
-    cpuButton.innerText = 'vs CPU'
+    cpuButton.innerText = 'Comecar o Jogo!'
 
-    let pvpButton = document.createElement('button')
-    pvpButton.classList.add('pvpButtonDefault')
-    pvpButton.innerText = 'vs Player'
 
     let gameName = document.createElement('h2')
     gameName.classList.add('gameNameDefault')
@@ -88,7 +85,6 @@ function startScreen() {
     startBackground.appendChild(inputNameOne)
     startBackground.appendChild(inputNameTwo)
     startBackground.appendChild(cpuButton)
-    startBackground.appendChild(pvpButton)
     startBackground.appendChild(gameCredit)
 
     cpuButton.addEventListener('click', function() {
@@ -104,8 +100,9 @@ function startScreen() {
         } else {
             namePlayerTwo = typedTextTwo
         }
+        audioBackGround()
         createBoard()
-
+        
     });
 }
 
@@ -145,6 +142,7 @@ function checkHorizontal(x, y) {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 premoveRemove()
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
@@ -157,6 +155,7 @@ function checkHorizontal(x, y) {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 premoveRemove()
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
@@ -231,6 +230,7 @@ function selectColumn(id) {
                     newDisk.classList.add("playerOne");
                     columnsIsFull(pegarPosicao[0])
                     versus.classList.add("versus1Change")
+                    audioSelectDisk()
                     vertical()
                     checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                     checkDiagonalTopToBottom()
@@ -256,6 +256,7 @@ function selectColumn(id) {
                     newDisk.classList.add("playerTwo");
                     columnsIsFull(pegarPosicao[0])
                     versus.classList.add("versus2Change")
+                    audioSelectDisk()
                     checkHorizontal(pegarPosicao[0], pegarPosicao[1])
                     checkDiagonalTopToBottom()
                     checkDiagonalBottomToTop()
@@ -308,6 +309,7 @@ function vertical() {
                     twoDisk.classList.add("winAnimation")
                     threeDisk.classList.add("winAnimation")
                     fourDisk.classList.add("winAnimation")
+                    audioWin ()
                     alertWinOne(vitoria)
                     premoveRemove()
                 } else {
@@ -319,6 +321,7 @@ function vertical() {
                     twoDisk.classList.add("winAnimation")
                     threeDisk.classList.add("winAnimation")
                     fourDisk.classList.add("winAnimation")
+                    audioWin ()
                     alertWinTwo(vitoria)
                     premoveRemove()
                 }
@@ -343,7 +346,8 @@ function checkDiagonalTopToBottom() {
                 oneDisk.classList.add("winAnimation")
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
-                fourDisk.classList.add("winAnimation")              
+                fourDisk.classList.add("winAnimation")      
+                audioWin ()        
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
 
@@ -357,6 +361,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
 
@@ -378,6 +383,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
 
@@ -391,6 +397,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
             }
@@ -411,6 +418,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
             }
@@ -423,6 +431,7 @@ function checkDiagonalTopToBottom() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
             }
@@ -447,6 +456,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
 
@@ -461,6 +471,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
 
@@ -482,6 +493,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinOne(namePlayerOne)
             }
@@ -494,6 +506,7 @@ function checkDiagonalBottomToTop() {
                 twoDisk.classList.add("winAnimation")
                 threeDisk.classList.add("winAnimation")
                 fourDisk.classList.add("winAnimation")
+                audioWin ()
                 travarGame('travar')
                 alertWinTwo(namePlayerTwo)
             }
@@ -629,4 +642,19 @@ function verificarTudo(element, local){
             }
         }
     }
+}
+
+function audioBackGround() {
+    let sound = document.getElementById("backgroundSound")
+    sound.play()
+}
+
+function audioSelectDisk (){
+    let sound = document.getElementById("selectDisk")
+    sound.play()
+}
+
+function audioWin (){
+    let sound = document.getElementById("winSound")
+    sound.play()
 }
