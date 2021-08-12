@@ -579,6 +579,26 @@ header nav {
     gap: 10px;
 }
 
+.playerOneBackground {
+    width: 100%;
+    padding: 8px 0;
+    background-color: #d1d2b2;
+    border-top: 10px solid #713433;
+    border-bottom: 10px solid #713433;
+}
+
+.playerTwoBackground {
+    width: 100%;
+    padding: 8px 0;
+    background-color: #d1d2b2;
+    border-top: 10px solid #51406a;
+    border-bottom: 10px solid #51406a;
+}
+
+#musicOff {
+    border: none;
+}
+
 .sound-enable {
     width: 20px;
     height: 20px;
@@ -696,6 +716,7 @@ header nav {
         }
     }
 }
+
 .video-container {
     position: absolute;
     top: 0;
@@ -704,6 +725,7 @@ header nav {
     height: 100%;
     overflow: hidden;
 }
+
 video {
     min-width: 100%;
     min-height: 100%;

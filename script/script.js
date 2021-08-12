@@ -21,19 +21,19 @@ let enableSom = true
 const musicOff = document.getElementById("musicOff");
 const buttonSandwich = document.getElementById("buttonSandwich");
 
-musicOff.addEventListener("click", function(){
-    if(enableSom === true){
-    soundBackground.pause()
-    soundBackground.currentTime = 0
-    enableSom = false
-    musicOff.classList.toggle("sound-enable");
-    musicOff.classList.toggle("sound-disable");
+musicOff.addEventListener("click", function() {
+    if (enableSom === true) {
+        soundBackground.pause()
+        soundBackground.currentTime = 0
+        enableSom = false
+        musicOff.classList.toggle("sound-enable");
+        musicOff.classList.toggle("sound-disable");
 
-    }else{
-    soundBackground.play()
-    enableSom = true
-    musicOff.classList.toggle("sound-enable");
-    musicOff.classList.toggle("sound-disable");
+    } else {
+        soundBackground.play()
+        enableSom = true
+        musicOff.classList.toggle("sound-enable");
+        musicOff.classList.toggle("sound-disable");
     }
 
 })
@@ -596,8 +596,8 @@ function showPlayerTurn() {
     let diskP2 = document.createElement("div");
     versus = document.createElement("div");
 
-    player1Container.classList.add("playerContainer")
-    player2Container.classList.add("playerContainer")
+    player1Container.classList.add("playerContainer", "playerOneBackground")
+    player2Container.classList.add("playerContainer", "playerTwoBackground")
     diskP1.classList.add("disk", "playerOne");
     diskP2.classList.add("disk", "playerTwo");
     versus.classList.add("versus1");
@@ -683,11 +683,11 @@ function audioSelectDisk() {
 }
 
 
-function audioWin (){
-    if(enableSom == true){
-    let sound = document.getElementById("winSound")
-    sound.play()
-    sound.volume = 0.2
+function audioWin() {
+    if (enableSom == true) {
+        let sound = document.getElementById("winSound")
+        sound.play()
+        sound.volume = 0.2
     }
 }
 
