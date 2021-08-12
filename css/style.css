@@ -1,84 +1,4 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -88,20 +8,9 @@ video {
     text-decoration: none;
 }
 
-
 /* HTML5 display-role reset for older browsers */
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
@@ -111,20 +20,15 @@ body {
     max-height: 100%;
 }
 
-ol,
-ul {
+ol, ul {
     list-style: none;
 }
 
-blockquote,
-q {
+blockquote, q {
     quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
 }
@@ -156,8 +60,7 @@ header {
     height: 60px;
     color: #caf0f8;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-content: center;
 }
 
@@ -183,29 +86,45 @@ header span {
     vertical-align: center;
 }
 
-.alertWin {
-    font-size: 17px;
+.alertWinOne {
+    font-size: 12px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 10%;
+    left: 51%;
     transform: translateX(-50%);
     text-align: center;
     padding: 10px;
     transition-duration: 0.8s;
     z-index: 1;
-    color: white;
+    color: #1c323b;
     border-style: hidden;
     border-radius: 4px;
-    background-color: blue;
+    background-color: var(--cor-5);
     width: 100px;
-    height: 50px;
+    height: 25px;
 }
-
-.alertErro {
-    font-size: 17px;
+.alertWinTwo {
+    font-size: 12px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 10%;
+    left: 51%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 10px;
+    transition-duration: 0.8s;
+    z-index: 1;
+    color: var(--cor-1);
+    border-style: hidden;
+    border-radius: 4px;
+    background-color: var(--cor-3);
+    width: 100px;
+    height: 20px;
+}
+.alertErro {
+    font-size: 12px;
+    position: absolute;
+    top: 10%;
+    left: 51%;
     transform: translateX(-50%);
     text-align: center;
     padding: 10px;
@@ -216,7 +135,7 @@ header span {
     border-radius: 4px;
     background-color: #ff4d6d;
     width: 150px;
-    height: 60px;
+    height: 20px;
 }
 
 .gameTie {
@@ -243,16 +162,18 @@ header span {
 }
 
 .getOut {
-    /* Saida para cima
+    transition: .8s;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--cor-1);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
-    top: -638px; */
-    /* Opacidade */
-    opacity: 0;
-    transition: 1s;
-    /* Saida para o lado
-    position: absolute;
-    left: -150%;
-    transition: 2s; */
+    top: -180%; 
 }
 
 .on {
@@ -289,7 +210,6 @@ header span {
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    background-color: black;
 }
 
 .playerOne {
@@ -342,22 +262,20 @@ footer {
     background-color: var(--cor-1);
     height: 10%;
     text-align: end;
-    line-height: 100px;
 }
 
 #names {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: 0 auto;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: stretch;
 }
 
 #names li {
     font-size: 10px;
-    margin-right: 4px;
     color: var(--cor-3);
-    width: 20%;
+    display: flex;
+    align-items: center;
 }
 
 header nav {
@@ -380,7 +298,6 @@ header nav {
 
 #buttonSandwich {
     display: flex;
-    padding: 0.5rem 1rem;
     border: none;
     margin: 0 15px;
     background: none;
@@ -394,8 +311,7 @@ header nav {
     width: 20px;
 }
 
-#hamburguer::after,
-#hamburguer::before {
+#hamburguer::after, #hamburguer::before {
     content: "";
     display: block;
     width: 20px;
@@ -507,8 +423,13 @@ header nav {
     transition: .5s;
 }
 
-.playerContainer {}
-
+.playerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
 .winAnimation {
     animation: piscaPisca 1s linear infinite;
 }
@@ -531,7 +452,6 @@ header nav {
     align-items: center;
     gap: 10px;
 }
-
 
 /* Animações de troca de jogador */
 
@@ -602,17 +522,16 @@ header nav {
 @media screen and (min-width: 475px) {
     #versusContainer {
         gap: 90px;
-    }
-    .playerContainer {
-        flex-direction: row;
+        transition: .5s;
     }
     .playerContainer {
         display: flex;
+        flex-direction: row;
         align-items: center;
         gap: 10px;
     }
     .premove {
-        animation: bounce 0.5s infinite ease-in;
+        animation: bounce 0.9s infinite ease-in;
     }
     @keyframes bounce {
         0% {
@@ -633,5 +552,33 @@ header nav {
         100% {
             transform: translateY(-10px);
         }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .alertWinOne {
+        font-size: 17px;
+        top: 20%;
+        left: 30%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 50px;
+    }
+    .alertWinTwo {
+        font-size: 17px;
+        top: 20%;
+        left: 70%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 50px;
+    }
+    .alertErro {
+        font-size: 17px;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 40px;
     }
 }
