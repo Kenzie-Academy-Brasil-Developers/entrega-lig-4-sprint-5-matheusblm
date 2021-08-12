@@ -571,7 +571,7 @@ function diskPremove(currentColumn) {
 
     let floatDisk = document.getElementById('floatDisk')
     floatDisk.classList.remove('hidden')
-    floatDisk.classList.add('disk', `player${whoseTurn}`)
+    floatDisk.classList.add('disk', `player${whoseTurn}`, 'premove')
 
     floatDisk.style.position = 'fixed'
     floatDisk.style.top = columnPosition.top - 40 + 'px'

@@ -534,6 +534,27 @@ header nav {
     gap: 10px;
 }
 
-.hidden {
-    display: none;
+.premove {
+    animation: bounce 0.5s infinite ease-in;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-10px);
+    }
+    30% {
+        transform: translateY(-5px);
+    }
+    48% {
+        transform: translateY(13px);
+    }
+    52% {
+        transform: translateY(13px);
+    }
+    70% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
 }
