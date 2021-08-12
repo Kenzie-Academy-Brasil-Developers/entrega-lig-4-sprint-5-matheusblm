@@ -605,6 +605,7 @@ function premoveRemove() {
     let premoveDisk = document.getElementById('floatDisk')
     premoveDisk.classList.toggle('hidden')
 }
+}
 
 function verificarTudo(element, local){
     if(element != null){
