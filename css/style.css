@@ -492,7 +492,7 @@ header nav {
         gap: 10px;
     }
     .premove {
-        animation: bounce 0.5s infinite ease-in;
+        animation: bounce 0.9s infinite ease-in;
     }
     @keyframes bounce {
         0% {
