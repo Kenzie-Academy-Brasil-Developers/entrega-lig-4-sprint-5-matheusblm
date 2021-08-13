@@ -36,10 +36,10 @@ const changeThemeUm = document.getElementById('temaDois').addEventListener('clic
     somSelectPlayerTwo = document.getElementById("selectSasuke")
     somPlayerOneWin = document.getElementById("winNaruto")
     somPlayerTwoWin = document.getElementById("winSasuke")
-    if(namePlayerOne === "PlayerOne"){
+    if (namePlayerOne === "PlayerOne") {
         namePlayerOne = "Naruto"
     }
-    if(namePlayerTwo === "PlayerTwo"){
+    if (namePlayerTwo === "PlayerTwo") {
         namePlayerTwo = "Sasuke"
     }
     videoNaruto()
@@ -57,23 +57,23 @@ const changeThemeDois = document.getElementById('temaUm').addEventListener('clic
     somSelectPlayerTwo = document.getElementById("selectDisk")
     somPlayerOneWin = document.getElementById("winSound")
     somPlayerTwoWin = document.getElementById("winSound")
-    
+
 })
 
 
-const musicDisable = musicOff.addEventListener("click", function(){
-    if(enableSom === true){
-    soundBackground.pause()
-    soundBackground.currentTime = 0
-    enableSom = false
-    musicOff.classList.toggle("sound-enable");
-    musicOff.classList.toggle("sound-disable");
+const musicDisable = musicOff.addEventListener("click", function() {
+    if (enableSom === true) {
+        soundBackground.pause()
+        soundBackground.currentTime = 0
+        enableSom = false
+        musicOff.classList.toggle("sound-enable");
+        musicOff.classList.toggle("sound-disable");
 
-    }else{
-    soundBackground.play()
-    enableSom = true
-    musicOff.classList.toggle("sound-enable");
-    musicOff.classList.toggle("sound-disable");
+    } else {
+        soundBackground.play()
+        enableSom = true
+        musicOff.classList.toggle("sound-enable");
+        musicOff.classList.toggle("sound-disable");
     }
 
 })
@@ -261,7 +261,7 @@ function startScreen() {
         let typedTextOne = document.querySelector(".inputNameOne").value;
         let typedTextTwo = document.querySelector(".inputNameTwo").value;
         if (typedTextOne === "") {
-                namePlayerOne = "PlayerOne"
+            namePlayerOne = "PlayerOne"
         } else {
             namePlayerOne = typedTextOne
         }
@@ -703,6 +703,9 @@ function verificarTudo(element, local) {
             }
         }
     }
+    setTimeout(() => {
+        versus.classList.remove('versus1Change', 'versus2Change')
+    }, 200);
 }
 
 function audioBackGround() {
@@ -723,10 +726,10 @@ function audioSelectDisk(sound) {
 }
 
 
-function audioWin (sound){
-    if(enableSom == true){
-    sound.play()
-    sound.volume = 0.09
+function audioWin(sound) {
+    if (enableSom == true) {
+        sound.play()
+        sound.volume = 0.09
     }
 }
 
@@ -746,10 +749,8 @@ function empate() {
 
 function videoNaruto() {
     let video = document.getElementById("backgroundVideo")
-        video.pause()
-        video.currentTime = 0
-        video.play()
-        video.volume = 0.1
+    video.pause()
+    video.currentTime = 0
+    video.play()
+    video.volume = 0.1
 }
-
-
