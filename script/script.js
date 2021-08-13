@@ -709,7 +709,7 @@ function audioBackGround() {
     if (enableSom == true) {
         soundBackground.loop = true
         soundBackground.play()
-        soundBackground.volume = 0.3
+        soundBackground.volume = 0.1
     }
 }
 
@@ -718,7 +718,7 @@ function audioSelectDisk(sound) {
         sound.pause()
         sound.currentTime = 0
         sound.play()
-        sound.volume = 0.3
+        sound.volume = 0.1
     }
 }
 
@@ -726,7 +726,7 @@ function audioSelectDisk(sound) {
 function audioWin (sound){
     if(enableSom == true){
     sound.play()
-    sound.volume = 0.2
+    sound.volume = 0.09
     }
 }
 
